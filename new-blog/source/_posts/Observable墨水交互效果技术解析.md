@@ -12,6 +12,7 @@ categories:
   - 技术解析
 index_img: https://cdn.jsdelivr.net/gh/fluid-dev/static@master/hexo-theme-fluid/screenshots/index.png
 excerpt: 深入解析 Observable 平台上惊艳的墨水交互效果的完整实现原理，从数学公式到 Shader 代码，带你理解流体仿真的核心算法。
+math: true
 ---
 
 ## 📌 前言

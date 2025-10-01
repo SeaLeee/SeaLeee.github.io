@@ -32,6 +32,31 @@ post_asset_folder: false
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
+
+# Markdown-it 配置
+markdown:
+  preset: 'default'
+  render:
+    html: true
+    xhtmlOut: false
+    langPrefix: 'language-'
+    breaks: true
+    linkify: true
+    typographer: true
+    quotes: '""'''
+  enable_rules:
+  disable_rules:
+  plugins:
+    - '@renbaoshuo/markdown-it-katex'
+  anchors:
+    level: 2
+    collisionSuffix: ''
+    permalink: false
+    permalinkClass: 'header-anchor'
+    permalinkSide: 'left'
+    permalinkSymbol: '¶'
+    case: 0
+    separator: '-'
 highlight:
   line_number: true
   auto_detect: false
