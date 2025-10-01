@@ -206,19 +206,79 @@ hexo clean && hexo g -d
 
 等待几分钟后，访问 `https://你的用户名.github.io` 即可看到部署好的博客！
 
-## 五、日常使用
+## 五、Git 分支管理策略
 
-### 5.1 创建新文章
+### 5.1 双分支管理（推荐）
+
+为了更好地管理博客源码和部署文件，建议采用双分支管理：
+
+- **`source` 分支**：存放博客源码（Markdown 文章、配置文件、主题等）
+- **`main` 分支**：存放生成的静态网站文件（由 `hexo deploy` 自动推送）
+
+### 5.2 创建 source 分支
 
 ```powershell
-hexo new "文章标题"
+# 在博客根目录（不是 new-blog 目录）
+git init
+git add .
+git commit -m "🎉 初始化博客项目"
+
+# 创建并切换到 source 分支
+git checkout -b source
+
+# 推送到远程仓库
+git remote add origin https://github.com/你的用户名/你的用户名.github.io.git
+git push -u origin source
 ```
 
-文章将在 `source/_posts/` 目录下生成。
+### 5.3 分支结构说明
 
-### 5.2 编写文章
+```
+source 分支（博客源码）
+  ├── .gitignore
+  ├── README.md
+  └── new-blog/
+      ├── _config.yml          # 博客配置
+      ├── _config.fluid.yml    # 主题配置
+      ├── package.json         # 依赖配置
+      ├── source/_posts/       # 文章目录 ⭐
+      └── themes/              # 主题目录
 
-使用 Markdown 格式编写文章，基本格式：
+main 分支（静态网站）
+  └── public/                  # hexo deploy 自动推送
+      ├── index.html
+      ├── css/
+      ├── js/
+      └── ...
+```
+
+## 六、日常写作和发布流程
+
+### 6.1 完整工作流程
+
+```powershell
+# 步骤 1：创建新文章
+hexo new "文章标题"
+
+# 步骤 2：编辑文章
+# 在 source/_posts/ 目录下编写 Markdown 文章
+
+# 步骤 3：本地预览
+hexo server
+# 访问 http://localhost:4000 预览效果
+
+# 步骤 4：生成并部署到网站（推送到 main 分支）
+hexo clean && hexo g -d
+
+# 步骤 5：提交源码到 source 分支
+git add .
+git commit -m "📝 新增文章：文章标题"
+git push origin source
+```
+
+### 6.2 文章格式模板
+
+创建文章后，编辑 Markdown 文件：
 
 ```markdown
 ---
@@ -231,30 +291,106 @@ categories:
   - 分类
 ---
 
-文章摘要
+这里是文章摘要，会显示在首页。
 
 <!-- more -->
 
-文章正文...
+## 一、正文标题
+
+这里是文章正文内容...
+
+### 1.1 子标题
+
+段落内容...
+
+## 二、代码示例
+
+```python
+def hello():
+    print("Hello, World!")
 ```
 
-### 5.3 预览和部署
+## 三、图片插入
+
+![图片描述](/img/example.jpg)
+```
+
+### 6.3 常用命令速查
 
 ```powershell
-# 本地预览
+# 创建新文章
+hexo new "文章标题"
+
+# 创建新页面
+hexo new page "页面名称"
+
+# 本地预览（热重载）
 hexo server
+# 或简写
+hexo s
+
+# 清理缓存
+hexo clean
 
 # 生成静态文件
 hexo generate
+# 或简写
+hexo g
 
-# 部署到 GitHub
+# 部署到 GitHub Pages
 hexo deploy
+# 或简写
+hexo d
 
-# 一键生成并部署
-hexo g -d
+# 一键清理、生成、部署
+hexo clean && hexo g -d
+
+# 生成文章草稿
+hexo new draft "草稿标题"
+
+# 发布草稿
+hexo publish "草稿标题"
 ```
 
-## 六、Fluid 主题配置
+### 6.4 在多台电脑上工作
+
+**首次克隆仓库：**
+
+```powershell
+# 克隆 source 分支（博客源码）
+git clone -b source https://github.com/你的用户名/你的用户名.github.io.git
+cd 你的用户名.github.io/new-blog
+
+# 安装依赖
+npm install
+
+# 现在可以开始写作了
+hexo new "新文章"
+```
+
+**每次开始写作前：**
+
+```powershell
+# 拉取最新的源码
+git pull origin source
+
+# 然后开始写作
+hexo new "文章标题"
+```
+
+**写作完成后：**
+
+```powershell
+# 部署到网站
+hexo clean && hexo g -d
+
+# 提交源码
+git add .
+git commit -m "📝 更新文章"
+git push origin source
+```
+
+## 七、Fluid 主题配置
 
 ### 6.1 自定义 Banner
 
@@ -283,7 +419,7 @@ search:
   enable: true
 ```
 
-## 七、常见问题
+## 八、常见问题
 
 ### 7.1 命令找不到
 
@@ -295,11 +431,18 @@ search:
 - 确认 Git 已正确配置用户信息
 - 检查网络连接
 
-### 7.3 主题样式不显示
+### 8.3 主题样式不显示
 
 运行 `hexo clean` 清理缓存后重新生成。
 
-## 八、总结
+### 8.4 多台电脑同步问题
+
+确保：
+- 两台电脑都克隆了 `source` 分支
+- 每次开始前先 `git pull origin source`
+- 写作完成后记得 `git push origin source`
+
+## 九、总结
 
 通过以上步骤，我们成功搭建了一个基于 Hexo 和 Fluid 主题的 GitHub Pages 博客。这是一个完全免费、功能强大且美观的博客解决方案。
 
