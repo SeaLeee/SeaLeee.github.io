@@ -460,4 +460,62 @@ search:
 - [Fluid 主题文档](https://hexo.fluid-dev.com/docs/)
 - [GitHub Pages 文档](https://docs.github.com/cn/pages)
 
+---
+
+## 十、扩展阅读
+
+如果你对 **Git 双分支管理策略** 还不够清楚，我准备了 3 份超详细的教程文档，从不同角度帮你彻底理解：
+
+### 📚 深度教程（推荐按顺序阅读）
+
+#### 1️⃣ [双分支管理策略详解](https://github.com/SeaLeee/SeaLeee.github.io/blob/source/双分支管理策略详解.md)
+最基础、最详细的解释：
+- 🤔 为什么需要两个分支？
+- 📊 分支结构可视化图解
+- 🔄 完整工作流程（5个步骤的详细演示）
+- 💡 类比：写书和出版
+- 🔍 10个常见疑问解答
+- 🎯 实战示例：多台电脑同步
+
+**适合**：第一次了解双分支的新手
+
+#### 2️⃣ [双分支管理实战案例](https://github.com/SeaLeee/SeaLeee.github.io/blob/source/双分支管理实战案例.md)
+实际操作和案例分析：
+- 📊 实时分支内容对比
+- 🔄 Markdown → HTML 转换过程演示
+- 🎭 两个分支的"对话"可视化
+- 💾 文件大小对比分析
+- 🚀 3个实战练习
+- 🎓 毕业测试（5道题含答案）
+
+**适合**：想要深入理解的用户
+
+#### 3️⃣ [双分支管理一张图秒懂](https://github.com/SeaLeee/SeaLeee.github.io/blob/source/双分支管理一张图秒懂.md)
+速查手册和可视化图表：
+- 🎯 完整工作流程图
+- 📊 GitHub 仓库结构图
+- 📋 特性对比表
+- 🎂 蛋糕类比（通俗易懂）
+- 📝 记忆口诀
+- ✅ 实战检查清单
+- ⚡ 5分钟快速上手指南
+
+**适合**：需要快速查阅的老手
+
+### 💡 核心要点速记
+
+```
+source 分支 = 你的工作台（Markdown 文章 + 配置）
+main 分支 = 展示橱窗（HTML 网站）
+hexo deploy = 自动搬运工（从工作台搬到橱窗）
+```
+
+### 🔗 文档位置
+
+所有文档都保存在本博客的 [GitHub 仓库 source 分支](https://github.com/SeaLeee/SeaLeee.github.io/tree/source)，随时可以查阅和下载！
+
+---
+
 祝你写作愉快！🎉
+
+> 💡 **提示**：如果你觉得这篇教程有帮助，欢迎 Star ⭐ 我的 [GitHub 仓库](https://github.com/SeaLeee/SeaLeee.github.io)！
