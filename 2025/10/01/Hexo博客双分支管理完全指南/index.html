@@ -19,12 +19,12 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="📖 前言本文是 Hexo 博客双分支管理的完全指南，从概念到实战，从理论到操作，帮你彻底掌握 source 和 main 分支的管理策略。 适合人群：  🆕 刚接触 Hexo 博客的新手 🤔 对双分支管理感到困惑的用户 💻 需要在多台电脑上同步博客的作者">
+    <meta name="description" content="📖 前言 本文是 Hexo 博客双分支管理的完全指南，从概念到实战，从理论到操作，帮你彻底掌握 source 和 main 分支的管理策略。 适合人群：  🆕 刚接触 Hexo 博客的新手 🤔 对双分支管理感到困惑的用户 💻 需要在多台电脑上同步博客的作者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo 博客双分支管理完全指南">
 <meta property="og:url" content="https://sealeee.github.io/2025/10/01/Hexo%E5%8D%9A%E5%AE%A2%E5%8F%8C%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="📖 前言本文是 Hexo 博客双分支管理的完全指南，从概念到实战，从理论到操作，帮你彻底掌握 source 和 main 分支的管理策略。 适合人群：  🆕 刚接触 Hexo 博客的新手 🤔 对双分支管理感到困惑的用户 💻 需要在多台电脑上同步博客的作者">
+<meta property="og:description" content="📖 前言 本文是 Hexo 博客双分支管理的完全指南，从概念到实战，从理论到操作，帮你彻底掌握 source 和 main 分支的管理策略。 适合人群：  🆕 刚接触 Hexo 博客的新手 🤔 对双分支管理感到困惑的用户 💻 需要在多台电脑上同步博客的作者">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-01T07:45:00.000Z">
 <meta property="article:modified_time" content="2025-10-01T07:48:25.267Z">
@@ -280,7 +280,8 @@
             
               <div class="markdown-body">
                 
-                <h2 id="📖-前言"><a href="#📖-前言" class="headerlink" title="📖 前言"></a>📖 前言</h2><p>本文是 Hexo 博客双分支管理的完全指南，从概念到实战，从理论到操作，帮你彻底掌握 source 和 main 分支的管理策略。</p>
+                <h2 id="📖-前言">📖 前言</h2>
+<p>本文是 Hexo 博客双分支管理的完全指南，从概念到实战，从理论到操作，帮你彻底掌握 source 和 main 分支的管理策略。</p>
 <p><strong>适合人群</strong>：</p>
 <ul>
 <li>🆕 刚接触 Hexo 博客的新手</li>
@@ -288,11 +289,14 @@
 <li>💻 需要在多台电脑上同步博客的作者</li>
 </ul>
 <span id="more"></span>
-
 <hr>
-<h2 id="第一部分：概念理解"><a href="#第一部分：概念理解" class="headerlink" title="第一部分：概念理解"></a>第一部分：概念理解</h2><h3 id="🤔-为什么需要两个分支？"><a href="#🤔-为什么需要两个分支？" class="headerlink" title="🤔 为什么需要两个分支？"></a>🤔 为什么需要两个分支？</h3><h4 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h4><p>当你使用 Hexo 写博客时，会产生两类文件：</p>
+<h2 id="第一部分：概念理解">第一部分：概念理解</h2>
+<h3 id="🤔-为什么需要两个分支？">🤔 为什么需要两个分支？</h3>
+<h4 id="问题背景">问题背景</h4>
+<p>当你使用 Hexo 写博客时，会产生两类文件：</p>
 <ol>
-<li><p><strong>源文件</strong>（你写的）：</p>
+<li>
+<p><strong>源文件</strong>（你写的）：</p>
 <ul>
 <li>Markdown 文章（<code>*.md</code>）</li>
 <li>配置文件（<code>_config.yml</code>）</li>
@@ -300,7 +304,8 @@
 <li>插件配置</li>
 </ul>
 </li>
-<li><p><strong>生成文件</strong>（Hexo 自动生成的）：</p>
+<li>
+<p><strong>生成文件</strong>（Hexo 自动生成的）：</p>
 <ul>
 <li>HTML 页面</li>
 <li>CSS 样式</li>
@@ -321,10 +326,12 @@
 </ul>
 <p><strong>解决方案</strong>：用两个分支！</p>
 <hr>
-<h3 id="📊-双分支结构图解"><a href="#📊-双分支结构图解" class="headerlink" title="📊 双分支结构图解"></a>📊 双分支结构图解</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs stylus">你的 GitHub 仓库: SeaLeee<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><br>│<br>├─── <span class="hljs-selector-tag">source</span> 分支 (博客源码) 👈 你主要工作的地方<br>│    │<br>│    ├── README<span class="hljs-selector-class">.md</span><br>│    ├── <span class="hljs-selector-class">.gitignore</span><br>│    └── new-blog/<br>│         ├── _config<span class="hljs-selector-class">.yml</span>          ← 博客配置<br>│         ├── _config<span class="hljs-selector-class">.fluid</span><span class="hljs-selector-class">.yml</span>    ← 主题配置<br>│         ├── package<span class="hljs-selector-class">.json</span>         ← 依赖管理<br>│         ├── source/<br>│         │   └── _posts/          ← 📝 你的 Markdown 文章<br>│         │       ├── 文章<span class="hljs-number">1</span><span class="hljs-selector-class">.md</span><br>│         │       ├── 文章<span class="hljs-number">2</span><span class="hljs-selector-class">.md</span><br>│         │       └── 文章<span class="hljs-number">3</span><span class="hljs-selector-class">.md</span><br>│         └── themes/              ← 主题文件<br>│<br>└─── <span class="hljs-selector-tag">main</span> 分支 (静态网站) 👈 hexo deploy 自动管理<br>     │<br>     ├── index<span class="hljs-selector-class">.html</span>                ← 网站首页<br>     ├── <span class="hljs-number">2025</span>/<span class="hljs-number">10</span>/<span class="hljs-number">01</span>/文章<span class="hljs-number">1</span>/<br>     │   └── index<span class="hljs-selector-class">.html</span>            ← 文章<span class="hljs-number">1</span> 的 HTML<br>     ├── css/                      ← 样式文件<br>     ├── js/                       ← 脚本文件<br>     └── img/                      ← 图片资源<br></code></pre></td></tr></table></figure>
-
+<h3 id="📊-双分支结构图解">📊 双分支结构图解</h3>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs stylus">你的 GitHub 仓库: SeaLeee<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><br>│<br>├─── <span class="hljs-selector-tag">source</span> 分支 (博客源码) 👈 你主要工作的地方<br>│    │<br>│    ├── README<span class="hljs-selector-class">.md</span><br>│    ├── <span class="hljs-selector-class">.gitignore</span><br>│    └── new-blog/<br>│         ├── _config<span class="hljs-selector-class">.yml</span>          ← 博客配置<br>│         ├── _config<span class="hljs-selector-class">.fluid</span><span class="hljs-selector-class">.yml</span>    ← 主题配置<br>│         ├── package<span class="hljs-selector-class">.json</span>         ← 依赖管理<br>│         ├── source/<br>│         │   └── _posts/          ← 📝 你的 Markdown 文章<br>│         │       ├── 文章<span class="hljs-number">1</span><span class="hljs-selector-class">.md</span><br>│         │       ├── 文章<span class="hljs-number">2</span><span class="hljs-selector-class">.md</span><br>│         │       └── 文章<span class="hljs-number">3</span><span class="hljs-selector-class">.md</span><br>│         └── themes/              ← 主题文件<br>│<br>└─── <span class="hljs-selector-tag">main</span> 分支 (静态网站) 👈 hexo deploy 自动管理<br>     │<br>     ├── index<span class="hljs-selector-class">.html</span>                ← 网站首页<br>     ├── <span class="hljs-number">2025</span>/<span class="hljs-number">10</span>/<span class="hljs-number">01</span>/文章<span class="hljs-number">1</span>/<br>     │   └── index<span class="hljs-selector-class">.html</span>            ← 文章<span class="hljs-number">1</span> 的 HTML<br>     ├── css/                      ← 样式文件<br>     ├── js/                       ← 脚本文件<br>     └── img/                      ← 图片资源<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="🎯-两个分支的职责"><a href="#🎯-两个分支的职责" class="headerlink" title="🎯 两个分支的职责"></a>🎯 两个分支的职责</h3><h4 id="📂-source-分支（源码分支）"><a href="#📂-source-分支（源码分支）" class="headerlink" title="📂 source 分支（源码分支）"></a>📂 source 分支（源码分支）</h4><p><strong>作用</strong>：保存你的原始工作内容</p>
+<h3 id="🎯-两个分支的职责">🎯 两个分支的职责</h3>
+<h4 id="📂-source-分支（源码分支）">📂 source 分支（源码分支）</h4>
+<p><strong>作用</strong>：保存你的原始工作内容</p>
 <p><strong>包含的内容</strong>：</p>
 <ul>
 <li>✅ Markdown 文章原文</li>
@@ -345,7 +352,8 @@
 <li>可读性强（Markdown 格式）</li>
 <li>方便版本控制</li>
 </ul>
-<h4 id="🌐-main-分支（部署分支）"><a href="#🌐-main-分支（部署分支）" class="headerlink" title="🌐 main 分支（部署分支）"></a>🌐 main 分支（部署分支）</h4><p><strong>作用</strong>：让 GitHub Pages 展示你的网站</p>
+<h4 id="🌐-main-分支（部署分支）">🌐 main 分支（部署分支）</h4>
+<p><strong>作用</strong>：让 GitHub Pages 展示你的网站</p>
 <p><strong>包含的内容</strong>：</p>
 <ul>
 <li>✅ 生成的 HTML 页面</li>
@@ -365,7 +373,9 @@
 <li>完全自动化管理（你不需要手动编辑）</li>
 </ul>
 <hr>
-<h3 id="💡-类比：理解双分支"><a href="#💡-类比：理解双分支" class="headerlink" title="💡 类比：理解双分支"></a>💡 类比：理解双分支</h3><h4 id="类比1：写书和出版"><a href="#类比1：写书和出版" class="headerlink" title="类比1：写书和出版"></a>类比1：写书和出版</h4><p>想象你在写一本书：</p>
+<h3 id="💡-类比：理解双分支">💡 类比：理解双分支</h3>
+<h4 id="类比1：写书和出版">类比1：写书和出版</h4>
+<p>想象你在写一本书：</p>
 <table>
 <thead>
 <tr>
@@ -374,7 +384,8 @@
 <th>内容</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>📝 <strong>手稿阶段</strong></td>
 <td>source 分支</td>
 <td>你的 Word 文档、草稿、笔记</td>
@@ -384,27 +395,32 @@
 <td>main 分支</td>
 <td>印刷成书的 PDF，读者看的版本</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
-<li><strong>source 分支</strong> &#x3D; 你的工作台，随时修改</li>
-<li><strong>main 分支</strong> &#x3D; 书店的成品，给读者看</li>
+<li><strong>source 分支</strong> = 你的工作台，随时修改</li>
+<li><strong>main 分支</strong> = 书店的成品，给读者看</li>
 </ul>
-<h4 id="类比2：开餐厅"><a href="#类比2：开餐厅" class="headerlink" title="类比2：开餐厅"></a>类比2：开餐厅</h4><ul>
-<li><p><strong>source 分支</strong> &#x3D; 厨房（你的工作区）</p>
+<h4 id="类比2：开餐厅">类比2：开餐厅</h4>
+<ul>
+<li>
+<p><strong>source 分支</strong> = 厨房（你的工作区）</p>
 <ul>
 <li>📝 菜谱（Markdown 文章）</li>
 <li>🥗 食材（配置文件）</li>
 <li>👨‍🍳 你可以随时调整菜谱</li>
 </ul>
 </li>
-<li><p><strong>main 分支</strong> &#x3D; 餐桌（展示区）</p>
+<li>
+<p><strong>main 分支</strong> = 餐桌（展示区）</p>
 <ul>
 <li>🍽️ 成品菜肴（HTML 网站）</li>
 <li>🎨 摆盘装饰（CSS 样式）</li>
 <li>👥 顾客直接享用（访客访问）</li>
 </ul>
 </li>
-<li><p><strong>hexo deploy</strong> &#x3D; 服务员</p>
+<li>
+<p><strong>hexo deploy</strong> = 服务员</p>
 <ul>
 <li>🚶‍♂️ 自动从厨房端到餐桌</li>
 <li>⚡ 你不需要自己端菜</li>
@@ -412,168 +428,200 @@
 </li>
 </ul>
 <hr>
-<h2 id="第二部分：实战操作"><a href="#第二部分：实战操作" class="headerlink" title="第二部分：实战操作"></a>第二部分：实战操作</h2><h3 id="🔄-完整工作流程（超详细）"><a href="#🔄-完整工作流程（超详细）" class="headerlink" title="🔄 完整工作流程（超详细）"></a>🔄 完整工作流程（超详细）</h3><h4 id="场景：你要写一篇新文章"><a href="#场景：你要写一篇新文章" class="headerlink" title="场景：你要写一篇新文章"></a>场景：你要写一篇新文章</h4><h5 id="步骤-1：创建文章（在本地）"><a href="#步骤-1：创建文章（在本地）" class="headerlink" title="步骤 1：创建文章（在本地）"></a>步骤 1：创建文章（在本地）</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 在 new-blog 目录</span><br>hexo new <span class="hljs-string">&quot;我的第一篇技术博客&quot;</span><br></code></pre></td></tr></table></figure>
-
+<h2 id="第二部分：实战操作">第二部分：实战操作</h2>
+<h3 id="🔄-完整工作流程（超详细）">🔄 完整工作流程（超详细）</h3>
+<h4 id="场景：你要写一篇新文章">场景：你要写一篇新文章</h4>
+<h5 id="步骤-1：创建文章（在本地）">步骤 1：创建文章（在本地）</h5>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 在 new-blog 目录</span><br>hexo new <span class="hljs-string">&quot;我的第一篇技术博客&quot;</span><br></code></pre></td></tr></table></figure>
 <p><strong>发生了什么</strong>：</p>
 <ul>
 <li>Hexo 在 <code>source/_posts/</code> 创建了 <code>我的第一篇技术博客.md</code></li>
 <li>这个文件只在你电脑上，还没上传</li>
 </ul>
-<h5 id="步骤-2：编写文章（在本地）"><a href="#步骤-2：编写文章（在本地）" class="headerlink" title="步骤 2：编写文章（在本地）"></a>步骤 2：编写文章（在本地）</h5><p>用 VS Code 打开 <code>我的第一篇技术博客.md</code>，写内容：</p>
+<h5 id="步骤-2：编写文章（在本地）">步骤 2：编写文章（在本地）</h5>
+<p>用 VS Code 打开 <code>我的第一篇技术博客.md</code>，写内容：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br>title: 我的第一篇技术博客<br>date: 2025-10-01<br><span class="hljs-section">tags: [技术, 学习]</span><br><span class="hljs-section">---</span><br><br>今天学习了 Hexo...<br></code></pre></td></tr></table></figure>
-
 <p><strong>此时状态</strong>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash">你的电脑 💻<br>  └── <span class="hljs-built_in">source</span>/_posts/我的第一篇技术博客.md ✅ 新建<br><br>GitHub <span class="hljs-built_in">source</span> 分支 ☁️<br>  └── (还没有这个文件) ❌<br><br>GitHub main 分支 ☁️<br>  └── (还没有这个文章的网页) ❌<br></code></pre></td></tr></table></figure>
-
-<h5 id="步骤-3：本地预览（在本地）"><a href="#步骤-3：本地预览（在本地）" class="headerlink" title="步骤 3：本地预览（在本地）"></a>步骤 3：本地预览（在本地）</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">hexo server<br></code></pre></td></tr></table></figure>
-
+<h5 id="步骤-3：本地预览（在本地）">步骤 3：本地预览（在本地）</h5>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">hexo server<br></code></pre></td></tr></table></figure>
 <p>访问 <code>http://localhost:4000</code> 看效果</p>
 <p><strong>发生了什么</strong>：</p>
 <ul>
 <li>Hexo 临时生成 HTML，只在你电脑上预览</li>
 <li>此时还没有任何东西上传到 GitHub</li>
 </ul>
-<h5 id="步骤-4：部署到网站（推送到-main-分支）"><a href="#步骤-4：部署到网站（推送到-main-分支）" class="headerlink" title="步骤 4：部署到网站（推送到 main 分支）"></a>步骤 4：部署到网站（推送到 main 分支）</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy<br></code></pre></td></tr></table></figure>
-
+<h5 id="步骤-4：部署到网站（推送到-main-分支）">步骤 4：部署到网站（推送到 main 分支）</h5>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">hexo clean &amp;&amp; hexo generate &amp;&amp; hexo deploy<br></code></pre></td></tr></table></figure>
 <p><strong>详细过程</strong>：</p>
 <ol>
 <li><code>hexo clean</code> - 清理旧文件</li>
-<li><code>hexo generate</code> - 把 Markdown 转成 HTML<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">我的第一篇技术博客.md <br>↓ (Hexo 处理)<br><span class="hljs-number">2025</span><span class="hljs-regexp">/10/</span><span class="hljs-number">01</span><span class="hljs-regexp">/我的第一篇技术博客/i</span>ndex.html<br></code></pre></td></tr></table></figure></li>
+<li><code>hexo generate</code> - 把 Markdown 转成 HTML<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">我的第一篇技术博客.md <br>↓ (Hexo 处理)<br><span class="hljs-number">2025</span><span class="hljs-regexp">/10/</span><span class="hljs-number">01</span><span class="hljs-regexp">/我的第一篇技术博客/i</span>ndex.html<br></code></pre></td></tr></table></figure>
+</li>
 <li><code>hexo deploy</code> - 自动推送到 GitHub 的 <strong>main 分支</strong></li>
 </ol>
 <p><strong>此时状态</strong>：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gradle">你的电脑 💻<br>  ├── <span class="hljs-keyword">source</span><span class="hljs-regexp">/_posts/</span>我的第一篇技术博客.md ✅ 源文件<br>  └── <span class="hljs-keyword">public</span><span class="hljs-regexp">/2025/</span><span class="hljs-number">10</span><span class="hljs-regexp">/01/</span>.../index.html ✅ 生成的网页<br><br>GitHub <span class="hljs-keyword">source</span> 分支 ☁️<br>  └── (还没有源文件) ❌<br><br>GitHub main 分支 ☁️<br>  └── <span class="hljs-number">2025</span><span class="hljs-regexp">/10/</span><span class="hljs-number">01</span><span class="hljs-regexp">/.../i</span>ndex.html ✅ 已部署！<br></code></pre></td></tr></table></figure>
-
-<p><strong>现在访客可以看到你的文章了</strong>！🎉<br>访问：<code>https://SeaLeee.github.io</code></p>
-<h5 id="步骤-5：保存源文件（推送到-source-分支）"><a href="#步骤-5：保存源文件（推送到-source-分支）" class="headerlink" title="步骤 5：保存源文件（推送到 source 分支）"></a>步骤 5：保存源文件（推送到 source 分支）</h5><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 回到仓库根目录（不是 new-blog）</span><br><span class="hljs-built_in">cd</span> ..<br><br><span class="hljs-comment"># 查看修改</span><br>git status<br><br><span class="hljs-comment"># 添加文件</span><br>git add .<br><br><span class="hljs-comment"># 提交</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：我的第一篇技术博客&quot;</span><br><br><span class="hljs-comment"># 推送到 source 分支</span><br>git push origin source<br></code></pre></td></tr></table></figure>
-
+<p><strong>现在访客可以看到你的文章了</strong>！🎉<br>
+访问：<code>https://SeaLeee.github.io</code></p>
+<h5 id="步骤-5：保存源文件（推送到-source-分支）">步骤 5：保存源文件（推送到 source 分支）</h5>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 回到仓库根目录（不是 new-blog）</span><br><span class="hljs-built_in">cd</span> ..<br><br><span class="hljs-comment"># 查看修改</span><br>git status<br><br><span class="hljs-comment"># 添加文件</span><br>git add .<br><br><span class="hljs-comment"># 提交</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：我的第一篇技术博客&quot;</span><br><br><span class="hljs-comment"># 推送到 source 分支</span><br>git push origin source<br></code></pre></td></tr></table></figure>
 <p><strong>此时状态</strong>：</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs gradle">你的电脑 💻<br>  ├── <span class="hljs-keyword">source</span><span class="hljs-regexp">/_posts/</span>我的第一篇技术博客.md ✅<br>  └── <span class="hljs-keyword">public</span><span class="hljs-regexp">/2025/</span><span class="hljs-number">10</span><span class="hljs-regexp">/01/</span>.../index.html ✅<br><br>GitHub <span class="hljs-keyword">source</span> 分支 ☁️<br>  └── <span class="hljs-keyword">source</span><span class="hljs-regexp">/_posts/</span>我的第一篇技术博客.md ✅ 源文件已保存！<br><br>GitHub main 分支 ☁️<br>  └── <span class="hljs-number">2025</span><span class="hljs-regexp">/10/</span><span class="hljs-number">01</span><span class="hljs-regexp">/.../i</span>ndex.html ✅ 网站已部署！<br></code></pre></td></tr></table></figure>
-
 <p><strong>完美！</strong> 两个分支都更新了！✨</p>
 <hr>
-<h3 id="🎯-一张图看懂工作流程"><a href="#🎯-一张图看懂工作流程" class="headerlink" title="🎯 一张图看懂工作流程"></a>🎯 一张图看懂工作流程</h3><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs gradle">┌─────────────────────────────────────────────────────────────┐<br>│                      你的工作流程                             │<br>└─────────────────────────────────────────────────────────────┘<br><br><span class="hljs-number">1</span>️⃣ 写文章                    <span class="hljs-number">2</span>️⃣ 部署网站                 <span class="hljs-number">3</span>️⃣ 保存源码<br>   ↓                            ↓                           ↓<br>hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;文章&quot;</span>             hexo clean                  git add .<br>   ↓                       hexo generate                git commit<br>编辑 .md 文件               hexo deploy                 git <span class="hljs-keyword">push</span> origin <span class="hljs-keyword">source</span><br>   ↓                            ↓                           ↓<br>hexo server (预览)          推送到 main 分支             推送到 <span class="hljs-keyword">source</span> 分支<br><br><br>┌─────────────────────────────────────────────────────────────┐<br>│                     关键区别对比                              │<br>└─────────────────────────────────────────────────────────────┘<br><br>特性          │  <span class="hljs-keyword">source</span> 分支          │  main 分支<br>─────────────┼──────────────────────┼───────────────────<br>文件类型      │  Markdown、YAML、JSON │  HTML、CSS、JS<br>文件大小      │  小（几十 KB）        │  大（几百 KB）<br>可读性        │  ★★★★★（人类可读）   │  ★★☆☆☆（机器代码）<br>谁使用        │  你（编辑文章）       │  GitHub Pages（展示网站）<br>更新方式      │  手动 git <span class="hljs-keyword">push</span>        │  hexo deploy 自动<br>需要克隆吗    │  ✅ 需要（写作必备）  │  ❌ 不需要（自动生成）<br></code></pre></td></tr></table></figure>
-
+<h3 id="🎯-一张图看懂工作流程">🎯 一张图看懂工作流程</h3>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs gradle">┌─────────────────────────────────────────────────────────────┐<br>│                      你的工作流程                             │<br>└─────────────────────────────────────────────────────────────┘<br><br><span class="hljs-number">1</span>️⃣ 写文章                    <span class="hljs-number">2</span>️⃣ 部署网站                 <span class="hljs-number">3</span>️⃣ 保存源码<br>   ↓                            ↓                           ↓<br>hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;文章&quot;</span>             hexo clean                  git add .<br>   ↓                       hexo generate                git commit<br>编辑 .md 文件               hexo deploy                 git <span class="hljs-keyword">push</span> origin <span class="hljs-keyword">source</span><br>   ↓                            ↓                           ↓<br>hexo server (预览)          推送到 main 分支             推送到 <span class="hljs-keyword">source</span> 分支<br><br><br>┌─────────────────────────────────────────────────────────────┐<br>│                     关键区别对比                              │<br>└─────────────────────────────────────────────────────────────┘<br><br>特性          │  <span class="hljs-keyword">source</span> 分支          │  main 分支<br>─────────────┼──────────────────────┼───────────────────<br>文件类型      │  Markdown、YAML、JSON │  HTML、CSS、JS<br>文件大小      │  小（几十 KB）        │  大（几百 KB）<br>可读性        │  ★★★★★（人类可读）   │  ★★☆☆☆（机器代码）<br>谁使用        │  你（编辑文章）       │  GitHub Pages（展示网站）<br>更新方式      │  手动 git <span class="hljs-keyword">push</span>        │  hexo deploy 自动<br>需要克隆吗    │  ✅ 需要（写作必备）  │  ❌ 不需要（自动生成）<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="📝-文章格式模板"><a href="#📝-文章格式模板" class="headerlink" title="📝 文章格式模板"></a>📝 文章格式模板</h3><p>创建文章后，编辑 Markdown 文件：</p>
+<h3 id="📝-文章格式模板">📝 文章格式模板</h3>
+<p>创建文章后，编辑 Markdown 文件：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs markdown">---<br>title: 文章标题<br>date: 2025-10-01 15:00:00<br>tags:<br><span class="hljs-bullet">  -</span> 标签1<br><span class="hljs-bullet">  -</span> 标签2<br>categories:<br><span class="hljs-section">  - 分类</span><br><span class="hljs-section">---</span><br><br>这里是文章摘要，会显示在首页。<br><br>&lt;!-- more --&gt;<br><br><span class="hljs-section">## 一、正文标题</span><br><br>这里是文章正文内容...<br><br><span class="hljs-section">### 1.1 子标题</span><br><br>段落内容...<br><br><span class="hljs-section">## 二、代码示例</span><br><br><span class="hljs-code">```python</span><br><span class="hljs-code">def hello():</span><br><span class="hljs-code">    print(&quot;Hello, World!&quot;)</span><br><span class="hljs-code">\```</span><br><br><span class="hljs-section">## 三、图片插入</span><br><br>![<span class="hljs-string">图片描述</span>](<span class="hljs-link">/img/example.jpg</span>)<br></code></pre></td></tr></table></figure>
-
 <hr>
-<h3 id="💻-在多台电脑上工作"><a href="#💻-在多台电脑上工作" class="headerlink" title="💻 在多台电脑上工作"></a>💻 在多台电脑上工作</h3><h4 id="电脑-A（第一台）-首次设置"><a href="#电脑-A（第一台）-首次设置" class="headerlink" title="电脑 A（第一台）- 首次设置"></a>电脑 A（第一台）- 首次设置</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 1. 克隆 source 分支</span><br>git clone <span class="hljs-literal">-b</span> source https://github.com/SeaLeee/SeaLeee.github.io.git<br><span class="hljs-built_in">cd</span> SeaLeee.github.io/<span class="hljs-built_in">new-blog</span><br><br><span class="hljs-comment"># 2. 安装依赖</span><br>npm install<br><br><span class="hljs-comment"># 3. 写文章</span><br>hexo new <span class="hljs-string">&quot;文章1&quot;</span><br><span class="hljs-comment"># 编辑、部署</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 4. 提交源码</span><br><span class="hljs-built_in">cd</span> ..<br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;新增文章1&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
-
-<h4 id="电脑-B（第二台）-首次使用"><a href="#电脑-B（第二台）-首次使用" class="headerlink" title="电脑 B（第二台）- 首次使用"></a>电脑 B（第二台）- 首次使用</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 1. 克隆 source 分支（源码）</span><br>git clone <span class="hljs-literal">-b</span> source https://github.com/SeaLeee/SeaLeee.github.io.git<br><span class="hljs-built_in">cd</span> SeaLeee.github.io/<span class="hljs-built_in">new-blog</span><br><br><span class="hljs-comment"># 2. 安装依赖</span><br>npm install<br><br><span class="hljs-comment"># 3. 继续写作</span><br>hexo new <span class="hljs-string">&quot;文章2&quot;</span><br><span class="hljs-comment"># 编辑、部署</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 4. 提交源码</span><br><span class="hljs-built_in">cd</span> ..<br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;新增文章2&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
-
-<h4 id="电脑-A-第二天继续"><a href="#电脑-A-第二天继续" class="headerlink" title="电脑 A - 第二天继续"></a>电脑 A - 第二天继续</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 同步最新源码</span><br>git pull origin source<br><br><span class="hljs-comment"># 现在你有文章2了！</span><br>hexo new <span class="hljs-string">&quot;文章3&quot;</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="💻-在多台电脑上工作">💻 在多台电脑上工作</h3>
+<h4 id="电脑-A（第一台）-首次设置">电脑 A（第一台）- 首次设置</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 1. 克隆 source 分支</span><br>git clone <span class="hljs-literal">-b</span> source https://github.com/SeaLeee/SeaLeee.github.io.git<br><span class="hljs-built_in">cd</span> SeaLeee.github.io/<span class="hljs-built_in">new-blog</span><br><br><span class="hljs-comment"># 2. 安装依赖</span><br>npm install<br><br><span class="hljs-comment"># 3. 写文章</span><br>hexo new <span class="hljs-string">&quot;文章1&quot;</span><br><span class="hljs-comment"># 编辑、部署</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 4. 提交源码</span><br><span class="hljs-built_in">cd</span> ..<br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;新增文章1&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
+<h4 id="电脑-B（第二台）-首次使用">电脑 B（第二台）- 首次使用</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 1. 克隆 source 分支（源码）</span><br>git clone <span class="hljs-literal">-b</span> source https://github.com/SeaLeee/SeaLeee.github.io.git<br><span class="hljs-built_in">cd</span> SeaLeee.github.io/<span class="hljs-built_in">new-blog</span><br><br><span class="hljs-comment"># 2. 安装依赖</span><br>npm install<br><br><span class="hljs-comment"># 3. 继续写作</span><br>hexo new <span class="hljs-string">&quot;文章2&quot;</span><br><span class="hljs-comment"># 编辑、部署</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 4. 提交源码</span><br><span class="hljs-built_in">cd</span> ..<br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;新增文章2&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
+<h4 id="电脑-A-第二天继续">电脑 A - 第二天继续</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 同步最新源码</span><br>git pull origin source<br><br><span class="hljs-comment"># 现在你有文章2了！</span><br>hexo new <span class="hljs-string">&quot;文章3&quot;</span><br></code></pre></td></tr></table></figure>
 <p><strong>关键</strong>：</p>
 <ul>
 <li>📥 每次开始前：<code>git pull origin source</code>（拉取最新）</li>
 <li>📤 每次写完后：<code>git push origin source</code>（保存到云端）</li>
 </ul>
 <hr>
-<h2 id="第三部分：常用命令"><a href="#第三部分：常用命令" class="headerlink" title="第三部分：常用命令"></a>第三部分：常用命令</h2><h3 id="📋-命令速查表"><a href="#📋-命令速查表" class="headerlink" title="📋 命令速查表"></a>📋 命令速查表</h3><h4 id="日常发布流程"><a href="#日常发布流程" class="headerlink" title="日常发布流程"></a>日常发布流程</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># === 在 new-blog 目录 ===</span><br><br><span class="hljs-comment"># 1. 创建文章</span><br>hexo new <span class="hljs-string">&quot;文章标题&quot;</span><br><br><span class="hljs-comment"># 2. 编辑文章</span><br><span class="hljs-comment"># (用 VS Code 编辑 source/_posts/文章标题.md)</span><br><br><span class="hljs-comment"># 3. 本地预览</span><br>hexo server<br><br><span class="hljs-comment"># 4. 部署到网站（自动推送到 main 分支）</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># === 切换到仓库根目录 ===</span><br><span class="hljs-built_in">cd</span> ..<br><br><span class="hljs-comment"># 5. 保存源码到 source 分支</span><br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：文章标题&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
-
-<h4 id="常用-Hexo-命令"><a href="#常用-Hexo-命令" class="headerlink" title="常用 Hexo 命令"></a>常用 Hexo 命令</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建新文章</span><br>hexo new <span class="hljs-string">&quot;文章标题&quot;</span><br><br><span class="hljs-comment"># 创建新页面</span><br>hexo new page <span class="hljs-string">&quot;页面名称&quot;</span><br><br><span class="hljs-comment"># 本地预览（热重载）</span><br>hexo server<br><span class="hljs-comment"># 或简写</span><br>hexo s<br><br><span class="hljs-comment"># 清理缓存</span><br>hexo clean<br><br><span class="hljs-comment"># 生成静态文件</span><br>hexo generate<br><span class="hljs-comment"># 或简写</span><br>hexo g<br><br><span class="hljs-comment"># 部署到 GitHub Pages</span><br>hexo deploy<br><span class="hljs-comment"># 或简写</span><br>hexo d<br><br><span class="hljs-comment"># 一键清理、生成、部署</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 生成文章草稿</span><br>hexo new draft <span class="hljs-string">&quot;草稿标题&quot;</span><br><br><span class="hljs-comment"># 发布草稿</span><br>hexo publish <span class="hljs-string">&quot;草稿标题&quot;</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="分支管理命令"><a href="#分支管理命令" class="headerlink" title="分支管理命令"></a>分支管理命令</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 查看当前分支</span><br>git branch<br><br><span class="hljs-comment"># 查看所有分支</span><br>git branch <span class="hljs-literal">-a</span><br><br><span class="hljs-comment"># 查看分支历史</span><br>git log <span class="hljs-literal">--oneline</span> <span class="hljs-literal">--all</span> <span class="hljs-literal">--graph</span><br><br><span class="hljs-comment"># 同步最新代码</span><br>git pull origin source<br><br><span class="hljs-comment"># 提交并推送</span><br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;提交说明&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
-
+<h2 id="第三部分：常用命令">第三部分：常用命令</h2>
+<h3 id="📋-命令速查表">📋 命令速查表</h3>
+<h4 id="日常发布流程">日常发布流程</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># === 在 new-blog 目录 ===</span><br><br><span class="hljs-comment"># 1. 创建文章</span><br>hexo new <span class="hljs-string">&quot;文章标题&quot;</span><br><br><span class="hljs-comment"># 2. 编辑文章</span><br><span class="hljs-comment"># (用 VS Code 编辑 source/_posts/文章标题.md)</span><br><br><span class="hljs-comment"># 3. 本地预览</span><br>hexo server<br><br><span class="hljs-comment"># 4. 部署到网站（自动推送到 main 分支）</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># === 切换到仓库根目录 ===</span><br><span class="hljs-built_in">cd</span> ..<br><br><span class="hljs-comment"># 5. 保存源码到 source 分支</span><br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：文章标题&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
+<h4 id="常用-Hexo-命令">常用 Hexo 命令</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建新文章</span><br>hexo new <span class="hljs-string">&quot;文章标题&quot;</span><br><br><span class="hljs-comment"># 创建新页面</span><br>hexo new page <span class="hljs-string">&quot;页面名称&quot;</span><br><br><span class="hljs-comment"># 本地预览（热重载）</span><br>hexo server<br><span class="hljs-comment"># 或简写</span><br>hexo s<br><br><span class="hljs-comment"># 清理缓存</span><br>hexo clean<br><br><span class="hljs-comment"># 生成静态文件</span><br>hexo generate<br><span class="hljs-comment"># 或简写</span><br>hexo g<br><br><span class="hljs-comment"># 部署到 GitHub Pages</span><br>hexo deploy<br><span class="hljs-comment"># 或简写</span><br>hexo d<br><br><span class="hljs-comment"># 一键清理、生成、部署</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 生成文章草稿</span><br>hexo new draft <span class="hljs-string">&quot;草稿标题&quot;</span><br><br><span class="hljs-comment"># 发布草稿</span><br>hexo publish <span class="hljs-string">&quot;草稿标题&quot;</span><br></code></pre></td></tr></table></figure>
+<h4 id="分支管理命令">分支管理命令</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 查看当前分支</span><br>git branch<br><br><span class="hljs-comment"># 查看所有分支</span><br>git branch <span class="hljs-literal">-a</span><br><br><span class="hljs-comment"># 查看分支历史</span><br>git log <span class="hljs-literal">--oneline</span> <span class="hljs-literal">--all</span> <span class="hljs-literal">--graph</span><br><br><span class="hljs-comment"># 同步最新代码</span><br>git pull origin source<br><br><span class="hljs-comment"># 提交并推送</span><br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;提交说明&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
 <hr>
-<h2 id="第四部分：常见问题"><a href="#第四部分：常见问题" class="headerlink" title="第四部分：常见问题"></a>第四部分：常见问题</h2><h3 id="❓-疑问解答"><a href="#❓-疑问解答" class="headerlink" title="❓ 疑问解答"></a>❓ 疑问解答</h3><h4 id="Q1-为什么不能把源文件和生成文件放一起？"><a href="#Q1-为什么不能把源文件和生成文件放一起？" class="headerlink" title="Q1: 为什么不能把源文件和生成文件放一起？"></a>Q1: 为什么不能把源文件和生成文件放一起？</h4><p><strong>A</strong>: 可以，但会很乱：</p>
+<h2 id="第四部分：常见问题">第四部分：常见问题</h2>
+<h3 id="❓-疑问解答">❓ 疑问解答</h3>
+<h4 id="Q1-为什么不能把源文件和生成文件放一起？">Q1: 为什么不能把源文件和生成文件放一起？</h4>
+<p><strong>A</strong>: 可以，但会很乱：</p>
 <ul>
 <li>❌ GitHub Pages 会尝试读取 <code>.md</code> 文件（报错）</li>
 <li>❌ 仓库体积大（源文件 + 生成文件重复）</li>
 <li>❌ 版本混乱（哪些该提交？哪些该忽略？）</li>
 </ul>
-<h4 id="Q2-我能只用一个分支吗？"><a href="#Q2-我能只用一个分支吗？" class="headerlink" title="Q2: 我能只用一个分支吗？"></a>Q2: 我能只用一个分支吗？</h4><p><strong>A</strong>: 可以，有两种方案：</p>
+<h4 id="Q2-我能只用一个分支吗？">Q2: 我能只用一个分支吗？</h4>
+<p><strong>A</strong>: 可以，有两种方案：</p>
 <p><strong>方案 A</strong>：用两个仓库</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">仓库<span class="hljs-number">1</span>: blog-<span class="hljs-selector-tag">source</span> (源文件)<br>仓库<span class="hljs-number">2</span>: username<span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span> (生成文件)<br></code></pre></td></tr></table></figure>
 <p>缺点：管理两个仓库麻烦</p>
-<p><strong>方案 B</strong>：只部署，不保存源文件<br>缺点：❌ 源文件丢失了，换电脑无法继续写作</p>
+<p><strong>方案 B</strong>：只部署，不保存源文件<br>
+缺点：❌ 源文件丢失了，换电脑无法继续写作</p>
 <p><strong>推荐</strong>：还是用双分支，最方便！</p>
-<h4 id="Q3-哪个是默认分支？"><a href="#Q3-哪个是默认分支？" class="headerlink" title="Q3: 哪个是默认分支？"></a>Q3: 哪个是默认分支？</h4><p><strong>A</strong>: </p>
+<h4 id="Q3-哪个是默认分支？">Q3: 哪个是默认分支？</h4>
+<p><strong>A</strong>:</p>
 <ul>
 <li>GitHub Pages 读取 <strong>main 分支</strong></li>
-<li>你克隆时应该用 <strong>source 分支</strong>：<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">git clone <span class="hljs-literal">-b</span> source https://github.com/SeaLeee/SeaLeee.github.io.git<br></code></pre></td></tr></table></figure></li>
+<li>你克隆时应该用 <strong>source 分支</strong>：<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">git clone <span class="hljs-literal">-b</span> source https://github.com/SeaLeee/SeaLeee.github.io.git<br></code></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="Q4-如果我忘记推送-source-分支会怎样？"><a href="#Q4-如果我忘记推送-source-分支会怎样？" class="headerlink" title="Q4: 如果我忘记推送 source 分支会怎样？"></a>Q4: 如果我忘记推送 source 分支会怎样？</h4><p><strong>A</strong>: </p>
+<h4 id="Q4-如果我忘记推送-source-分支会怎样？">Q4: 如果我忘记推送 source 分支会怎样？</h4>
+<p><strong>A</strong>:</p>
 <ul>
 <li>✅ 网站依然正常（main 分支已更新）</li>
 <li>❌ 但源文件没保存到云端</li>
 <li>❌ 换电脑或重装系统后，源文件丢失</li>
 </ul>
 <p><strong>建议</strong>：养成习惯，每次发布后都推送 source！</p>
-<h4 id="Q5-hexo-deploy-做了什么？"><a href="#Q5-hexo-deploy-做了什么？" class="headerlink" title="Q5: hexo deploy 做了什么？"></a>Q5: hexo deploy 做了什么？</h4><p><strong>A</strong>: <code>hexo-deployer-git</code> 插件内部执行了：</p>
+<h4 id="Q5-hexo-deploy-做了什么？">Q5: hexo deploy 做了什么？</h4>
+<p><strong>A</strong>: <code>hexo-deployer-git</code> 插件内部执行了：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-number">1.</span> 切换到 .<span class="hljs-property">deploy_git</span> 文件夹<br><span class="hljs-number">2.</span> git add .<br><span class="hljs-number">3.</span> git commit -m <span class="hljs-string">&quot;Site updated&quot;</span><br><span class="hljs-number">4.</span> git push origin main<br><span class="hljs-number">5.</span> 切换回原来的分支<br></code></pre></td></tr></table></figure>
-
 <p>你看不到这个过程，但它确实发生了！</p>
 <hr>
-<h3 id="🔧-故障排查"><a href="#🔧-故障排查" class="headerlink" title="🔧 故障排查"></a>🔧 故障排查</h3><h4 id="问题：网站没更新"><a href="#问题：网站没更新" class="headerlink" title="问题：网站没更新"></a>问题：网站没更新</h4><p><strong>解决方案</strong>：</p>
+<h3 id="🔧-故障排查">🔧 故障排查</h3>
+<h4 id="问题：网站没更新">问题：网站没更新</h4>
+<p><strong>解决方案</strong>：</p>
 <ul>
 <li>检查 <code>hexo deploy</code> 有没有报错</li>
 <li>访问 GitHub 查看 main 分支的提交时间</li>
 <li>等待几分钟（GitHub Pages 需要构建时间）</li>
 <li>清除浏览器缓存</li>
 </ul>
-<h4 id="问题：换电脑后找不到文章源文件"><a href="#问题：换电脑后找不到文章源文件" class="headerlink" title="问题：换电脑后找不到文章源文件"></a>问题：换电脑后找不到文章源文件</h4><p><strong>解决方案</strong>：</p>
+<h4 id="问题：换电脑后找不到文章源文件">问题：换电脑后找不到文章源文件</h4>
+<p><strong>解决方案</strong>：</p>
 <ul>
 <li>检查有没有 push 到 source 分支</li>
 <li><code>git clone -b source</code> 下载源码</li>
 <li>如果忘记推送，源文件就丢失了</li>
 </ul>
-<h4 id="问题：不知道当前在哪个分支"><a href="#问题：不知道当前在哪个分支" class="headerlink" title="问题：不知道当前在哪个分支"></a>问题：不知道当前在哪个分支</h4><p><strong>解决方案</strong>：</p>
+<h4 id="问题：不知道当前在哪个分支">问题：不知道当前在哪个分支</h4>
+<p><strong>解决方案</strong>：</p>
 <ul>
 <li>运行 <code>git branch</code> 查看</li>
 <li>应该在 source 分支（<code>* source</code>）</li>
 <li>如果在 main 分支，切换回来：<code>git checkout source</code></li>
 </ul>
-<h4 id="问题：命令找不到"><a href="#问题：命令找不到" class="headerlink" title="问题：命令找不到"></a>问题：命令找不到</h4><p><strong>解决方案</strong>：</p>
+<h4 id="问题：命令找不到">问题：命令找不到</h4>
+<p><strong>解决方案</strong>：</p>
 <ul>
 <li>如果提示 <code>hexo</code> 或 <code>npm</code> 命令找不到，检查环境变量配置</li>
-<li>Windows: 添加到 PATH<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$env:PATH</span> += <span class="hljs-string">&quot;;C:\Program Files\nodejs&quot;</span><br><span class="hljs-variable">$env:PATH</span> += <span class="hljs-string">&quot;;C:\Users\<span class="hljs-variable">$env:USERNAME</span>\AppData\Roaming\npm&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li>Windows: 添加到 PATH<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-variable">$env:PATH</span> += <span class="hljs-string">&quot;;C:\Program Files\nodejs&quot;</span><br><span class="hljs-variable">$env:PATH</span> += <span class="hljs-string">&quot;;C:\Users\<span class="hljs-variable">$env:USERNAME</span>\AppData\Roaming\npm&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
 </ul>
-<h4 id="问题：主题样式不显示"><a href="#问题：主题样式不显示" class="headerlink" title="问题：主题样式不显示"></a>问题：主题样式不显示</h4><p><strong>解决方案</strong>：</p>
+<h4 id="问题：主题样式不显示">问题：主题样式不显示</h4>
+<p><strong>解决方案</strong>：</p>
 <ul>
 <li>运行 <code>hexo clean</code> 清理缓存后重新生成</li>
 <li>检查 <code>_config.yml</code> 中的 <code>theme</code> 配置</li>
 <li>确保主题文件夹存在</li>
 </ul>
 <hr>
-<h2 id="第五部分：最佳实践"><a href="#第五部分：最佳实践" class="headerlink" title="第五部分：最佳实践"></a>第五部分：最佳实践</h2><h3 id="✅-推荐做法"><a href="#✅-推荐做法" class="headerlink" title="✅ 推荐做法"></a>✅ 推荐做法</h3><ol>
-<li><p><strong>每天开始前</strong></p>
+<h2 id="第五部分：最佳实践">第五部分：最佳实践</h2>
+<h3 id="✅-推荐做法">✅ 推荐做法</h3>
+<ol>
+<li>
+<p><strong>每天开始前</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">git pull origin source  <span class="hljs-comment"># 同步最新版本</span><br></code></pre></td></tr></table></figure>
 </li>
-<li><p><strong>写完文章后</strong></p>
+<li>
+<p><strong>写完文章后</strong></p>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 部署到网站</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><br><span class="hljs-comment"># 保存源码</span><br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：文章标题&quot;</span><br>git push origin source<br></code></pre></td></tr></table></figure>
 </li>
-<li><p><strong>定期备份</strong></p>
+<li>
+<p><strong>定期备份</strong></p>
 <ul>
 <li>每周检查 source 分支是否最新</li>
 <li>重要文章写完立即推送</li>
 </ul>
 </li>
-<li><p><strong>使用有意义的提交信息</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># ✅ 好的提交信息</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：双分支管理完全指南&quot;</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;🎨 更新主题配置&quot;</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;🐛 修复代码高亮问题&quot;</span><br><br><span class="hljs-comment"># ❌ 不好的提交信息</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;update&quot;</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;fix&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li>
+<p><strong>使用有意义的提交信息</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># ✅ 好的提交信息</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;📝 新增文章：双分支管理完全指南&quot;</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;🎨 更新主题配置&quot;</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;🐛 修复代码高亮问题&quot;</span><br><br><span class="hljs-comment"># ❌ 不好的提交信息</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;update&quot;</span><br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;fix&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
 </ol>
-<h3 id="❌-不要做的事"><a href="#❌-不要做的事" class="headerlink" title="❌ 不要做的事"></a>❌ 不要做的事</h3><ol>
-<li><p><strong>不要手动修改 main 分支</strong></p>
+<h3 id="❌-不要做的事">❌ 不要做的事</h3>
+<ol>
+<li>
+<p><strong>不要手动修改 main 分支</strong></p>
 <ul>
 <li>main 分支会被 <code>hexo deploy</code> 覆盖</li>
 <li>所有修改都会丢失</li>
 </ul>
 </li>
-<li><p><strong>不要在 main 分支工作</strong></p>
+<li>
+<p><strong>不要在 main 分支工作</strong></p>
 <ul>
 <li>始终在 source 分支工作</li>
 <li>main 分支只是部署用</li>
 </ul>
 </li>
-<li><p><strong>不要忘记 push source 分支</strong></p>
+<li>
+<p><strong>不要忘记 push source 分支</strong></p>
 <ul>
 <li>网站部署了但源码没保存</li>
 <li>换电脑后无法继续写作</li>
 </ul>
 </li>
-<li><p><strong>不要克隆 main 分支</strong></p>
+<li>
+<p><strong>不要克隆 main 分支</strong></p>
 <ul>
 <li>main 分支只有 HTML，无法编辑</li>
 <li>应该克隆 source 分支</li>
@@ -581,39 +629,48 @@
 </li>
 </ol>
 <hr>
-<h2 id="第六部分：实战练习"><a href="#第六部分：实战练习" class="headerlink" title="第六部分：实战练习"></a>第六部分：实战练习</h2><h3 id="🎓-毕业测试"><a href="#🎓-毕业测试" class="headerlink" title="🎓 毕业测试"></a>🎓 毕业测试</h3><h4 id="请回答以下问题："><a href="#请回答以下问题：" class="headerlink" title="请回答以下问题："></a>请回答以下问题：</h4><ol>
-<li><p>你写的 Markdown 文章保存在哪个分支？</p>
+<h2 id="第六部分：实战练习">第六部分：实战练习</h2>
+<h3 id="🎓-毕业测试">🎓 毕业测试</h3>
+<h4 id="请回答以下问题：">请回答以下问题：</h4>
+<ol>
+<li>
+<p>你写的 Markdown 文章保存在哪个分支？</p>
 <ul>
-<li><input disabled="" type="checkbox"> main</li>
-<li><input checked="" disabled="" type="checkbox"> source</li>
+<li>[ ] main</li>
+<li>[x] source</li>
 </ul>
 </li>
-<li><p>访客访问你的网站，GitHub Pages 读取哪个分支？</p>
+<li>
+<p>访客访问你的网站，GitHub Pages 读取哪个分支？</p>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> main</li>
-<li><input disabled="" type="checkbox"> source</li>
+<li>[x] main</li>
+<li>[ ] source</li>
 </ul>
 </li>
-<li><p><code>hexo deploy</code> 会更新哪个分支？</p>
+<li>
+<p><code>hexo deploy</code> 会更新哪个分支？</p>
 <ul>
-<li><input checked="" disabled="" type="checkbox"> main</li>
-<li><input disabled="" type="checkbox"> source</li>
+<li>[x] main</li>
+<li>[ ] source</li>
 </ul>
 </li>
-<li><p>换电脑后，应该克隆哪个分支？</p>
+<li>
+<p>换电脑后，应该克隆哪个分支？</p>
 <ul>
-<li><input disabled="" type="checkbox"> main</li>
-<li><input checked="" disabled="" type="checkbox"> source</li>
+<li>[ ] main</li>
+<li>[x] source</li>
 </ul>
 </li>
-<li><p>写完文章后，需要执行几次 push？</p>
+<li>
+<p>写完文章后，需要执行几次 push？</p>
 <ul>
-<li><input disabled="" type="checkbox"> 1 次（hexo deploy 自动 push）</li>
-<li><input checked="" disabled="" type="checkbox"> 2 次（hexo deploy + git push source）</li>
+<li>[ ] 1 次（hexo deploy 自动 push）</li>
+<li>[x] 2 次（hexo deploy + git push source）</li>
 </ul>
 </li>
 </ol>
-<h4 id="答案解析："><a href="#答案解析：" class="headerlink" title="答案解析："></a>答案解析：</h4><ol>
+<h4 id="答案解析：">答案解析：</h4>
+<ol>
 <li>✅ source - Markdown 源文件</li>
 <li>✅ main - HTML 网站文件</li>
 <li>✅ main - hexo deploy 自动推送</li>
@@ -621,31 +678,37 @@
 <li>✅ 2 次 - main 自动，source 手动</li>
 </ol>
 <hr>
-<h3 id="🚀-实战练习"><a href="#🚀-实战练习" class="headerlink" title="🚀 实战练习"></a>🚀 实战练习</h3><h4 id="练习-1：完整流程一遍"><a href="#练习-1：完整流程一遍" class="headerlink" title="练习 1：完整流程一遍"></a>练习 1：完整流程一遍</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># === 写文章 ===</span><br><span class="hljs-built_in">cd</span> <span class="hljs-built_in">new-blog</span><br>hexo new <span class="hljs-string">&quot;测试文章&quot;</span><br><span class="hljs-comment"># 编辑 source/_posts/测试文章.md</span><br><br><span class="hljs-comment"># === 发布到网站 ===</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><span class="hljs-comment"># 现在 main 分支已更新，网站可以看到了</span><br><br><span class="hljs-comment"># === 保存源文件 ===</span><br><span class="hljs-built_in">cd</span> ..<br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;新增测试文章&quot;</span><br>git push origin source<br><span class="hljs-comment"># 现在 source 分支也更新了</span><br><br><span class="hljs-comment"># === 验证 ===</span><br><span class="hljs-comment"># 访问 https://SeaLeee.github.io 看网站 ✅</span><br><span class="hljs-comment"># 访问 GitHub 查看 source 分支 ✅</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="🚀-实战练习">🚀 实战练习</h3>
+<h4 id="练习-1：完整流程一遍">练习 1：完整流程一遍</h4>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># === 写文章 ===</span><br><span class="hljs-built_in">cd</span> <span class="hljs-built_in">new-blog</span><br>hexo new <span class="hljs-string">&quot;测试文章&quot;</span><br><span class="hljs-comment"># 编辑 source/_posts/测试文章.md</span><br><br><span class="hljs-comment"># === 发布到网站 ===</span><br>hexo clean &amp;&amp; hexo g <span class="hljs-literal">-d</span><br><span class="hljs-comment"># 现在 main 分支已更新，网站可以看到了</span><br><br><span class="hljs-comment"># === 保存源文件 ===</span><br><span class="hljs-built_in">cd</span> ..<br>git add .<br>git commit <span class="hljs-literal">-m</span> <span class="hljs-string">&quot;新增测试文章&quot;</span><br>git push origin source<br><span class="hljs-comment"># 现在 source 分支也更新了</span><br><br><span class="hljs-comment"># === 验证 ===</span><br><span class="hljs-comment"># 访问 https://SeaLeee.github.io 看网站 ✅</span><br><span class="hljs-comment"># 访问 GitHub 查看 source 分支 ✅</span><br></code></pre></td></tr></table></figure>
 <hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><h3 id="🎯-核心要点"><a href="#🎯-核心要点" class="headerlink" title="🎯 核心要点"></a>🎯 核心要点</h3><h4 id="记住这-4-句话"><a href="#记住这-4-句话" class="headerlink" title="记住这 4 句话"></a>记住这 4 句话</h4><ol>
-<li><strong>source 分支</strong> &#x3D; 你的草稿本（Markdown）</li>
-<li><strong>main 分支</strong> &#x3D; 印刷厂的成品（HTML）</li>
-<li><strong>hexo deploy</strong> &#x3D; 自动送去印刷（更新 main）</li>
-<li><strong>git push source</strong> &#x3D; 草稿备份到云盘（更新 source）</li>
+<h2 id="总结">总结</h2>
+<h3 id="🎯-核心要点">🎯 核心要点</h3>
+<h4 id="记住这-4-句话">记住这 4 句话</h4>
+<ol>
+<li><strong>source 分支</strong> = 你的草稿本（Markdown）</li>
+<li><strong>main 分支</strong> = 印刷厂的成品（HTML）</li>
+<li><strong>hexo deploy</strong> = 自动送去印刷（更新 main）</li>
+<li><strong>git push source</strong> = 草稿备份到云盘（更新 source）</li>
 </ol>
-<h4 id="每天的工作流程"><a href="#每天的工作流程" class="headerlink" title="每天的工作流程"></a>每天的工作流程</h4><figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs gradle">早上：<br>  git pull origin <span class="hljs-keyword">source</span>         ← 同步最新版本<br><br>写作：<br>  hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;文章&quot;</span>                ← 创建<br>  (编辑 Markdown)                ← 写作<br>  hexo server                    ← 预览<br><br>发布：<br>  hexo clean &amp;&amp; hexo g -d        ← 发布到网站（main 分支）<br>  git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;...&quot;</span> &amp;&amp; git <span class="hljs-keyword">push</span> origin <span class="hljs-keyword">source</span><br>                                  ← 保存源文件（<span class="hljs-keyword">source</span> 分支）<br></code></pre></td></tr></table></figure>
-
-<h4 id="记忆口诀"><a href="#记忆口诀" class="headerlink" title="记忆口诀"></a>记忆口诀</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">source</span> 存源码，<span class="hljs-selector-tag">main</span> 放网站<br>写完文章记得，两边都要传<br>hexo deploy 很智能，<span class="hljs-selector-tag">main</span> 它自己管<br>git push <span class="hljs-selector-tag">source</span> 别忘记，源码安全最重要<br></code></pre></td></tr></table></figure>
-
+<h4 id="每天的工作流程">每天的工作流程</h4>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs gradle">早上：<br>  git pull origin <span class="hljs-keyword">source</span>         ← 同步最新版本<br><br>写作：<br>  hexo <span class="hljs-keyword">new</span> <span class="hljs-string">&quot;文章&quot;</span>                ← 创建<br>  (编辑 Markdown)                ← 写作<br>  hexo server                    ← 预览<br><br>发布：<br>  hexo clean &amp;&amp; hexo g -d        ← 发布到网站（main 分支）<br>  git add . &amp;&amp; git commit -m <span class="hljs-string">&quot;...&quot;</span> &amp;&amp; git <span class="hljs-keyword">push</span> origin <span class="hljs-keyword">source</span><br>                                  ← 保存源文件（<span class="hljs-keyword">source</span> 分支）<br></code></pre></td></tr></table></figure>
+<h4 id="记忆口诀">记忆口诀</h4>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">source</span> 存源码，<span class="hljs-selector-tag">main</span> 放网站<br>写完文章记得，两边都要传<br>hexo deploy 很智能，<span class="hljs-selector-tag">main</span> 它自己管<br>git push <span class="hljs-selector-tag">source</span> 别忘记，源码安全最重要<br></code></pre></td></tr></table></figure>
 <hr>
-<h3 id="📚-参考资源"><a href="#📚-参考资源" class="headerlink" title="📚 参考资源"></a>📚 参考资源</h3><ul>
+<h3 id="📚-参考资源">📚 参考资源</h3>
+<ul>
 <li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官方文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/">Fluid 主题文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://docs.github.com/cn/pages">GitHub Pages 文档</a></li>
 <li><a target="_blank" rel="noopener" href="https://git-scm.com/doc">Git 官方文档</a></li>
 </ul>
 <hr>
-<h3 id="🎉-结语"><a href="#🎉-结语" class="headerlink" title="🎉 结语"></a>🎉 结语</h3><p>通过本文，你应该已经完全理解了 Hexo 博客的双分支管理策略。记住：</p>
+<h3 id="🎉-结语">🎉 结语</h3>
+<p>通过本文，你应该已经完全理解了 Hexo 博客的双分支管理策略。记住：</p>
 <ul>
-<li>✅ <strong>source 分支</strong> &#x3D; 你的工作台（编辑区）</li>
-<li>✅ <strong>main 分支</strong> &#x3D; 展示橱窗（发布区）</li>
+<li>✅ <strong>source 分支</strong> = 你的工作台（编辑区）</li>
+<li>✅ <strong>main 分支</strong> = 展示橱窗（发布区）</li>
 <li>✅ 两者分工明确，互不干扰</li>
 <li>✅ 养成良好习惯，每次都保存源码</li>
 </ul>
