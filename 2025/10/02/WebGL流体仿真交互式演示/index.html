@@ -1,0 +1,922 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SeaLeeAI">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="在浏览器中体验实时流体仿真效果，了解 WebGL 如何实现高性能的 GPU 计算。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebGL 流体仿真交互式演示">
+<meta property="og:url" content="https://sealeee.github.io/2025/10/02/WebGL%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%BC%94%E7%A4%BA/index.html">
+<meta property="og:site_name" content="SeaLeeAI&#39;s Blog">
+<meta property="og:description" content="在浏览器中体验实时流体仿真效果，了解 WebGL 如何实现高性能的 GPU 计算。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-10-02T07:00:00.000Z">
+<meta property="article:modified_time" content="2025-10-02T02:27:03.945Z">
+<meta property="article:author" content="SeaLeeAI">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="Shader">
+<meta property="article:tag" content="WebGL">
+<meta property="article:tag" content="交互式演示">
+<meta property="article:tag" content="流体仿真">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>WebGL 流体仿真交互式演示 - SeaLeeAI&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sealeee.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.0.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="WebGL 流体仿真交互式演示"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-02 15:00" pubdate>
+          2025年10月2日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">WebGL 流体仿真交互式演示</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="在线演示">在线演示</h2>
+<p>本页面集合了多个优质的 WebGL 流体仿真演示，你可以直接在浏览器中交互体验。</p>
+<!-- more -->
+<hr>
+<h2 id="🌊-演示一：墨水扩散效果">🌊 演示一：墨水扩散效果</h2>
+<p>这是 Tom Larkworthy 实现的经典墨水扩散模拟，展示了流体的**扩散（Diffusion）<strong>和</strong>平流（Advection）**特性。</p>
+<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <iframe width="100%" height="684" frameborder="0"
+    src="https://observablehq.com/embed/@tomlarkworthy/ink?cells=viewof+intro%2Cviewof+demo"></iframe>
+</div>
+<p><strong>技术要点：</strong></p>
+<ul>
+<li>使用 WebGL Compute Shader 实现 GPU 加速</li>
+<li>实现了 Stable Fluids 算法的核心步骤</li>
+<li>支持鼠标/触摸交互输入</li>
+</ul>
+<p><strong>操作提示：</strong></p>
+<ul>
+<li>🖱️ 按住鼠标左键拖动：添加速度扰动</li>
+<li>🎨 按住鼠标右键拖动：添加染料</li>
+<li>🔄 刷新页面：重置场景</li>
+</ul>
+<hr>
+<h2 id="🎭-演示二：2D-流体场可视化">🎭 演示二：2D 流体场可视化</h2>
+<p>这个演示展示了速度场的矢量可视化，帮助理解流体的运动模式。</p>
+<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <iframe width="100%" height="600" frameborder="0"
+    src="https://observablehq.com/embed/@mbostock/flow-fields?cells=canvas"></iframe>
+</div>
+<p><strong>可视化说明：</strong></p>
+<ul>
+<li>每个箭头代表该位置的速度方向和大小</li>
+<li>颜色表示速度强度（红色=高速，蓝色=低速）</li>
+<li>观察涡旋（Vortex）的形成和消散</li>
+</ul>
+<hr>
+<h2 id="🔬-演示三：GPU-粒子系统">🔬 演示三：GPU 粒子系统</h2>
+<p>使用 GPU 并行计算 10 万个粒子的运动轨迹。</p>
+<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+  <iframe width="100%" height="600" frameborder="0"
+    src="https://observablehq.com/embed/@rreusser/gpgpu-particles-from-first-principles?cells=canvas"></iframe>
+</div>
+<p><strong>性能对比：</strong></p>
+<ul>
+<li><strong>CPU 计算</strong>：~1,000 粒子 @ 60 FPS</li>
+<li><strong>GPU 计算</strong>：~100,000 粒子 @ 60 FPS</li>
+<li>性能提升：<strong>100 倍</strong>！</li>
+</ul>
+<hr>
+<h2 id="💻-本地实现：简易-WebGL-流体仿真">💻 本地实现：简易 WebGL 流体仿真</h2>
+<p>想在自己的网页中实现流体效果？这里是一个最小化的实现示例：</p>
+<div id="fluid-canvas-container" style="margin: 2em 0;">
+  <canvas id="fluid-canvas" width="512" height="512" style="width: 100%; max-width: 512px; border: 1px solid #ccc; border-radius: 4px; cursor: crosshair;"></canvas>
+  <div style="margin-top: 1em; text-align: center;">
+    <button onclick="resetFluid()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; background: #3273dc; color: white; border: none; border-radius: 4px;">重置</button>
+    <button onclick="togglePause()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; background: #48c774; color: white; border: none; border-radius: 4px; margin-left: 8px;">暂停/继续</button>
+  </div>
+</div>
+<script>
+// 简易 2D 流体仿真实现
+(function() {
+  const canvas = document.getElementById('fluid-canvas');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  const width = canvas.width;
+  const height = canvas.height;
+  
+  // 流体网格
+  const gridSize = 64;
+  const cellSize = width / gridSize;
+  
+  // 速度场和密度场
+  let velocityX = new Array(gridSize * gridSize).fill(0);
+  let velocityY = new Array(gridSize * gridSize).fill(0);
+  let density = new Array(gridSize * gridSize).fill(0);
+  
+  let isPaused = false;
+  let mouseDown = false;
+  let mouseX = 0, mouseY = 0;
+  let prevMouseX = 0, prevMouseY = 0;
+  
+  // 鼠标事件
+  canvas.addEventListener('mousedown', (e) => {
+    mouseDown = true;
+    const rect = canvas.getBoundingClientRect();
+    mouseX = (e.clientX - rect.left) / rect.width * width;
+    mouseY = (e.clientY - rect.top) / rect.height * height;
+    prevMouseX = mouseX;
+    prevMouseY = mouseY;
+  });
+  
+  canvas.addEventListener('mousemove', (e) => {
+    if (!mouseDown) return;
+    const rect = canvas.getBoundingClientRect();
+    prevMouseX = mouseX;
+    prevMouseY = mouseY;
+    mouseX = (e.clientX - rect.left) / rect.width * width;
+    mouseY = (e.clientY - rect.top) / rect.height * height;
+    
+    // 添加速度和密度
+    const gridX = Math.floor(mouseX / cellSize);
+    const gridY = Math.floor(mouseY / cellSize);
+    if (gridX >= 0 && gridX < gridSize && gridY >= 0 && gridY < gridSize) {
+      const idx = gridY * gridSize + gridX;
+      velocityX[idx] += (mouseX - prevMouseX) * 0.5;
+      velocityY[idx] += (mouseY - prevMouseY) * 0.5;
+      density[idx] = Math.min(density[idx] + 50, 255);
+    }
+  });
+  
+  canvas.addEventListener('mouseup', () => { mouseDown = false; });
+  canvas.addEventListener('mouseleave', () => { mouseDown = false; });
+  
+  // 扩散函数（简化版）
+  function diffuse(field, diffusionRate) {
+    const newField = new Array(field.length);
+    for (let y = 1; y < gridSize - 1; y++) {
+      for (let x = 1; x < gridSize - 1; x++) {
+        const idx = y * gridSize + x;
+        newField[idx] = field[idx] + diffusionRate * (
+          field[idx - 1] + field[idx + 1] + 
+          field[idx - gridSize] + field[idx + gridSize] - 
+          4 * field[idx]
+        );
+      }
+    }
+    return newField;
+  }
+  
+  // 衰减函数
+  function decay(field, rate) {
+    return field.map(v => v * rate);
+  }
+  
+  // 更新和渲染
+  function update() {
+    if (!isPaused) {
+      // 扩散
+      velocityX = diffuse(velocityX, 0.0001);
+      velocityY = diffuse(velocityY, 0.0001);
+      density = diffuse(density, 0.0001);
+      
+      // 衰减
+      velocityX = decay(velocityX, 0.99);
+      velocityY = decay(velocityY, 0.99);
+      density = decay(density, 0.995);
+    }
+    
+    // 渲染
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, width, height);
+    
+    for (let y = 0; y < gridSize; y++) {
+      for (let x = 0; x < gridSize; x++) {
+        const idx = y * gridSize + x;
+        const d = Math.floor(density[idx]);
+        if (d > 0) {
+          ctx.fillStyle = `rgba(100, 150, 255, ${Math.min(d / 255, 1)})`;
+          ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+        }
+      }
+    }
+    
+    requestAnimationFrame(update);
+  }
+  
+  window.resetFluid = function() {
+    velocityX.fill(0);
+    velocityY.fill(0);
+    density.fill(0);
+  };
+  
+  window.togglePause = function() {
+    isPaused = !isPaused;
+  };
+  
+  update();
+})();
+</script>
+<p><strong>代码说明：</strong></p>
+<ul>
+<li>使用 Canvas 2D API（简化版，实际应用推荐 WebGL）</li>
+<li>实现了基本的扩散和衰减</li>
+<li>鼠标交互添加速度和密度</li>
+<li>约 100 行代码的完整实现</li>
+</ul>
+<hr>
+<h2 id="📚-进阶学习资源">📚 进阶学习资源</h2>
+<h3 id="WebGL-流体仿真教程">WebGL 流体仿真教程</h3>
+<ol>
+<li>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/PavelDoGreat/WebGL-Fluid-Simulation">WebGL Fluid Simulation</a></strong><br>
+开源的高性能 WebGL 流体仿真库</p>
+</li>
+<li>
+<p><strong><a target="_blank" rel="noopener" href="https://developer.nvidia.com/gpugems/gpugems/part-vi-beyond-triangles/chapter-38-fast-fluid-dynamics-simulation-gpu">GPU Gems Chapter 38</a></strong><br>
+NVIDIA 官方 GPU 流体仿真指南</p>
+</li>
+<li>
+<p><strong><a target="_blank" rel="noopener" href="https://www.shadertoy.com/results?query=fluid">Shader Toy 流体模拟合集</a></strong><br>
+社区贡献的各种流体效果实现</p>
+</li>
+</ol>
+<h3 id="Observable-笔记本推荐">Observable 笔记本推荐</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://observablehq.com/@tomlarkworthy">Tom Larkworthy’s Notebooks</a> - WebGL 大师的作品集</li>
+<li><a target="_blank" rel="noopener" href="https://observablehq.com/@rreusser">Ricky Reusser’s Graphics</a> - 物理模拟专家</li>
+<li><a target="_blank" rel="noopener" href="https://observablehq.com/@mbostock">Mike Bostock’s Visualizations</a> - D3.js 作者的可视化作品</li>
+</ul>
+<hr>
+<h2 id="🛠️-技术栈">🛠️ 技术栈</h2>
+<p>本页面使用的技术：</p>
+<ul>
+<li><strong>WebGL 2.0</strong>：GPU 加速图形渲染</li>
+<li><strong>GLSL</strong>：着色器编程语言</li>
+<li><strong>JavaScript ES6+</strong>：交互逻辑控制</li>
+<li><strong>Observable Runtime</strong>：嵌入交互式笔记本</li>
+</ul>
+<hr>
+<h2 id="💡-实现提示">💡 实现提示</h2>
+<p>如果你想在自己的项目中集成流体仿真：</p>
+<ol>
+<li>
+<p><strong>使用现成的库</strong>（推荐新手）：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/PavelDoGreat/WebGL-Fluid-Simulation">WebGL-Fluid-Simulation</a></li>
+<li><a target="_blank" rel="noopener" href="https://threejs.org/">Three.js</a> + Shader Material</li>
+</ul>
+</li>
+<li>
+<p><strong>从零实现</strong>（适合学习）：</p>
+<ul>
+<li>参考 <a target="_blank" rel="noopener" href="https://www.researchgate.net/publication/2560062_Real-Time_Fluid_Dynamics_for_Games">Jos Stam 的论文</a></li>
+<li>学习 <a target="_blank" rel="noopener" href="https://webglfundamentals.org/">WebGL Fundamentals</a></li>
+<li>实现 Compute Shader（需要 WebGL 2.0）</li>
+</ul>
+</li>
+<li>
+<p><strong>嵌入 Observable</strong>（最快方式）：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">iframe</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;100%&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;600&quot;</span> <span class="hljs-attr">frameborder</span>=<span class="hljs-string">&quot;0&quot;</span></span><br><span class="hljs-tag">  <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://observablehq.com/embed/@用户名/笔记本名?cells=单元格名&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">iframe</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="🎯-性能优化建议">🎯 性能优化建议</h2>
+<ul>
+<li><strong>分辨率</strong>：64x64 到 256x256 网格是移动端的最佳平衡</li>
+<li><strong>迭代次数</strong>：Jacobi 求解器 20-30 次足够实时应用</li>
+<li><strong>纹理格式</strong>：使用 <code>RGBA16F</code> 或 <code>RGBA32F</code> 提高精度</li>
+<li><strong>双缓冲</strong>：Ping-Pong 两个 Framebuffer 避免读写冲突</li>
+</ul>
+<hr>
+<p><em>本页面所有演示均可在现代浏览器中运行，推荐使用 Chrome/Edge/Firefox 获得最佳体验。</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%8A%80%E6%9C%AF%E8%A7%A3%E6%9E%90/" class="category-chain-item">技术解析</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/WebGL/" class="print-no-link">#WebGL</a>
+      
+        <a href="/tags/%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F/" class="print-no-link">#流体仿真</a>
+      
+        <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%BC%94%E7%A4%BA/" class="print-no-link">#交互式演示</a>
+      
+        <a href="/tags/JavaScript/" class="print-no-link">#JavaScript</a>
+      
+        <a href="/tags/Shader/" class="print-no-link">#Shader</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>WebGL 流体仿真交互式演示</div>
+      <div>https://sealeee.github.io/2025/10/02/WebGL流体仿真交互式演示/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SeaLeeAI</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/02/%E5%AE%9E%E6%97%B6%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F%E7%BC%96%E7%A8%8B%E5%85%A5%E9%97%A8-%E4%BB%8E%E9%9B%B6%E7%90%86%E8%A7%A3Navier-Stokes%E6%96%B9%E7%A8%8B/" title="实时流体仿真编程入门：从零理解 Navier-Stokes 方程">
+                        <span class="hidden-mobile">实时流体仿真编程入门：从零理解 Navier-Stokes 方程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
