@@ -26,8 +26,9 @@
 <meta property="og:site_name" content="SeaLeeAI&#39;s Blog">
 <meta property="og:description" content="在浏览器中体验实时流体仿真效果，了解 WebGL 如何实现高性能的 GPU 计算。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sealeee.github.io/img/fluid-demo-preview.jpg">
 <meta property="article:published_time" content="2025-10-02T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-02T02:27:03.945Z">
+<meta property="article:modified_time" content="2025-10-02T02:33:10.860Z">
 <meta property="article:author" content="SeaLeeAI">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Shader">
@@ -35,6 +36,7 @@
 <meta property="article:tag" content="交互式演示">
 <meta property="article:tag" content="流体仿真">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sealeee.github.io/img/fluid-demo-preview.jpg">
   
   
   
@@ -243,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.1k 字
+          771 字
         
       </span>
     
@@ -254,7 +256,7 @@
         
         
         
-          9 分钟
+          7 分钟
         
       </span>
     
@@ -345,143 +347,32 @@
 <li>性能提升：<strong>100 倍</strong>！</li>
 </ul>
 <hr>
-<h2 id="💻-本地实现：简易-WebGL-流体仿真">💻 本地实现：简易 WebGL 流体仿真</h2>
-<p>想在自己的网页中实现流体效果？这里是一个最小化的实现示例：</p>
-<div id="fluid-canvas-container" style="margin: 2em 0;">
-  <canvas id="fluid-canvas" width="512" height="512" style="width: 100%; max-width: 512px; border: 1px solid #ccc; border-radius: 4px; cursor: crosshair;"></canvas>
-  <div style="margin-top: 1em; text-align: center;">
-    <button onclick="resetFluid()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; background: #3273dc; color: white; border: none; border-radius: 4px;">重置</button>
-    <button onclick="togglePause()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; background: #48c774; color: white; border: none; border-radius: 4px; margin-left: 8px;">暂停/继续</button>
-  </div>
-</div>
-<script>
-// 简易 2D 流体仿真实现
-(function() {
-  const canvas = document.getElementById('fluid-canvas');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-  
-  // 流体网格
-  const gridSize = 64;
-  const cellSize = width / gridSize;
-  
-  // 速度场和密度场
-  let velocityX = new Array(gridSize * gridSize).fill(0);
-  let velocityY = new Array(gridSize * gridSize).fill(0);
-  let density = new Array(gridSize * gridSize).fill(0);
-  
-  let isPaused = false;
-  let mouseDown = false;
-  let mouseX = 0, mouseY = 0;
-  let prevMouseX = 0, prevMouseY = 0;
-  
-  // 鼠标事件
-  canvas.addEventListener('mousedown', (e) => {
-    mouseDown = true;
-    const rect = canvas.getBoundingClientRect();
-    mouseX = (e.clientX - rect.left) / rect.width * width;
-    mouseY = (e.clientY - rect.top) / rect.height * height;
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
-  });
-  
-  canvas.addEventListener('mousemove', (e) => {
-    if (!mouseDown) return;
-    const rect = canvas.getBoundingClientRect();
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
-    mouseX = (e.clientX - rect.left) / rect.width * width;
-    mouseY = (e.clientY - rect.top) / rect.height * height;
-    
-    // 添加速度和密度
-    const gridX = Math.floor(mouseX / cellSize);
-    const gridY = Math.floor(mouseY / cellSize);
-    if (gridX >= 0 && gridX < gridSize && gridY >= 0 && gridY < gridSize) {
-      const idx = gridY * gridSize + gridX;
-      velocityX[idx] += (mouseX - prevMouseX) * 0.5;
-      velocityY[idx] += (mouseY - prevMouseY) * 0.5;
-      density[idx] = Math.min(density[idx] + 50, 255);
-    }
-  });
-  
-  canvas.addEventListener('mouseup', () => { mouseDown = false; });
-  canvas.addEventListener('mouseleave', () => { mouseDown = false; });
-  
-  // 扩散函数（简化版）
-  function diffuse(field, diffusionRate) {
-    const newField = new Array(field.length);
-    for (let y = 1; y < gridSize - 1; y++) {
-      for (let x = 1; x < gridSize - 1; x++) {
-        const idx = y * gridSize + x;
-        newField[idx] = field[idx] + diffusionRate * (
-          field[idx - 1] + field[idx + 1] + 
-          field[idx - gridSize] + field[idx + gridSize] - 
-          4 * field[idx]
-        );
-      }
-    }
-    return newField;
-  }
-  
-  // 衰减函数
-  function decay(field, rate) {
-    return field.map(v => v * rate);
-  }
-  
-  // 更新和渲染
-  function update() {
-    if (!isPaused) {
-      // 扩散
-      velocityX = diffuse(velocityX, 0.0001);
-      velocityY = diffuse(velocityY, 0.0001);
-      density = diffuse(density, 0.0001);
-      
-      // 衰减
-      velocityX = decay(velocityX, 0.99);
-      velocityY = decay(velocityY, 0.99);
-      density = decay(density, 0.995);
-    }
-    
-    // 渲染
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, width, height);
-    
-    for (let y = 0; y < gridSize; y++) {
-      for (let x = 0; x < gridSize; x++) {
-        const idx = y * gridSize + x;
-        const d = Math.floor(density[idx]);
-        if (d > 0) {
-          ctx.fillStyle = `rgba(100, 150, 255, ${Math.min(d / 255, 1)})`;
-          ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-        }
-      }
-    }
-    
-    requestAnimationFrame(update);
-  }
-  
-  window.resetFluid = function() {
-    velocityX.fill(0);
-    velocityY.fill(0);
-    density.fill(0);
-  };
-  
-  window.togglePause = function() {
-    isPaused = !isPaused;
-  };
-  
-  update();
-})();
-</script>
-<p><strong>代码说明：</strong></p>
+<h2 id="💻-本地实现：完整流体仿真演示">💻 本地实现：完整流体仿真演示</h2>
+<p>我创建了一个完整的交互式流体仿真页面，使用 Canvas 2D API 实现。</p>
+<h3 id="🚀-点击这里打开完整演示页面">🚀 <a href="/fluid-demo.html">点击这里打开完整演示页面</a></h3>
+<p><strong>演示特色：</strong></p>
 <ul>
-<li>使用 Canvas 2D API（简化版，实际应用推荐 WebGL）</li>
-<li>实现了基本的扩散和衰减</li>
-<li>鼠标交互添加速度和密度</li>
-<li>约 100 行代码的完整实现</li>
+<li>✅ 完整的 Stable Fluids 算法实现</li>
+<li>✅ 支持鼠标和触摸交互</li>
+<li>✅ 实时 FPS 显示</li>
+<li>✅ 彩色渐变染料效果</li>
+<li>✅ 扩散 + 衰减 + 边界处理</li>
+<li>✅ 响应式设计，支持移动端</li>
+</ul>
+<p><strong>快速预览：</strong></p>
+<div style="text-align: center; margin: 2em 0;">
+  <a href="/fluid-demo.html" target="_blank" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s;">
+    🌊 打开完整演示
+  </a>
+</div>
+<p><img src="/img/fluid-demo-preview.jpg" srcset="/img/loading.gif" lazyload alt="流体仿真演示预览"></p>
+<p><strong>核心功能：</strong></p>
+<ul>
+<li>✅ <strong>64x64 网格分辨率</strong>，4096 个模拟单元</li>
+<li>✅ <strong>扩散算法</strong>：4 次 Jacobi 迭代</li>
+<li>✅ <strong>彩色渐变</strong>：基于密度的 HSL 色彩映射</li>
+<li>✅ <strong>实时统计</strong>：FPS 计数器和帧数追踪</li>
+<li>✅ <strong>完整源码</strong>：约 200 行注释清晰的 JavaScript</li>
 </ul>
 <hr>
 <h2 id="📚-进阶学习资源">📚 进阶学习资源</h2>
@@ -586,11 +477,11 @@ NVIDIA 官方 GPU 流体仿真指南</p>
       
         <a href="/tags/%E6%B5%81%E4%BD%93%E4%BB%BF%E7%9C%9F/" class="print-no-link">#流体仿真</a>
       
+        <a href="/tags/Shader/" class="print-no-link">#Shader</a>
+      
         <a href="/tags/%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%BC%94%E7%A4%BA/" class="print-no-link">#交互式演示</a>
       
         <a href="/tags/JavaScript/" class="print-no-link">#JavaScript</a>
-      
-        <a href="/tags/Shader/" class="print-no-link">#Shader</a>
       
     </div>
   
