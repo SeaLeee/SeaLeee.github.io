@@ -22,6 +22,29 @@ excerpt: 一份面向程序员和技术美术的流体仿真完全指南，用�
 
 ---
 
+## 🎨 交互式演示
+
+在开始理论之前，先看一个实际的流体仿真效果。这是 Tom Larkworthy 在 Observable 上实现的墨水扩散效果（点击可交互）：
+
+<div class="observable-embed" style="margin: 2em 0;">
+  <iframe width="100%" height="684" frameborder="0"
+    src="https://observablehq.com/embed/@tomlarkworthy/ink?cells=viewof+intro%2Cviewof+demo"></iframe>
+</div>
+
+> 💡 **提示**：可以用鼠标在画布上绘制，观察流体的扩散和平流效果。这正是我们接下来要讲解的算法原理！
+
+<details>
+<summary>📺 <strong>更多演示效果</strong>（点击展开）</summary>
+
+其他优秀的流体仿真演示：
+- [WebGL 水波纹效果](https://observablehq.com/@rreusser/periodic-planar-three-body-orbits)
+- [GPU 粒子系统](https://observablehq.com/@rreusser/gpgpu-particles-from-first-principles)
+- [2D 流体场可视化](https://observablehq.com/@mbostock/flow-fields)
+
+</details>
+
+---
+
 ## 一、流体的三大核心特性
 
 在开始编程之前，让我们先观察真实世界。倒一杯水，滴入一滴酱油，用手指搅动，你会发现：
