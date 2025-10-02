@@ -21,7 +21,7 @@ banner_mask_alpha: 0.3
 
 .collection-category h2 {
   color: #2c3e50;
-  font-size: 1.5em;
+  font-size: 1.2em;
   border-bottom: 2px solid #e0e0e0;
   padding-bottom: 0.5em;
   margin-bottom: 1em;
@@ -114,50 +114,28 @@ banner_mask_alpha: 0.3
 <ul class="collection-list">
   <li class="collection-item">
     <a href="https://zhuanlan.zhihu.com/p/1933664667504468720" target="_blank" rel="noopener noreferrer">
-      基于物理的渲染（PBR）理论与实践
+      易用的renderdoc：RenderDoc Meta
     </a>
     <div class="meta">
-      <span class="tag">PBR</span>
-      <span class="tag">渲染</span>
-      <span class="tag">图形学</span>
+      <span class="tag">RenderDoc</span>
+      <span class="tag">图形调试</span>
+      <span class="tag">工具</span>
     </div>
   </li>
-</ul>
-
-</div>
-
----
-
-## 💻 前端开发
-
-<div class="collection-category">
-
-<ul class="collection-list">
-  <!-- 待添加 -->
-</ul>
-
-</div>
-
----
-
-## 🚀 性能优化
-
-<div class="collection-category">
-
-<ul class="collection-list">
-  <!-- 待添加 -->
-</ul>
-
-</div>
-
----
-
-## 🔧 开发工具
-
-<div class="collection-category">
-
-<ul class="collection-list">
-  <!-- 待添加 -->
+  
+  <!-- 
+    添加文章时，请使用文章的真实标题，不要随意命名
+    示例：
+    <li class="collection-item">
+      <a href="文章链接" target="_blank" rel="noopener noreferrer">
+        文章的实际标题（从原文复制）
+      </a>
+      <div class="meta">
+        <span class="tag">标签1</span>
+        <span class="tag">标签2</span>
+      </div>
+    </li>
+  -->
 </ul>
 
 </div>
