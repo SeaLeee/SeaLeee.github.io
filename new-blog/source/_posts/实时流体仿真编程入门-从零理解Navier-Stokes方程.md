@@ -24,24 +24,39 @@ excerpt: 一份面向程序员和技术美术的流体仿真完全指南，用�
 
 ## 🎨 交互式演示
 
-在开始理论之前，先看一个实际的流体仿真效果。这是 Tom Larkworthy 在 Observable 上实现的墨水扩散效果（点击可交互）：
+在开始理论之前，先体验一个实际的流体仿真效果！
 
-<div class="observable-embed" style="margin: 2em 0;">
-  <iframe width="100%" height="684" frameborder="0"
-    src="https://observablehq.com/embed/@tomlarkworthy/ink?cells=viewof+intro%2Cviewof+demo"></iframe>
+### 🌊 本地流体仿真演示（推荐）
+
+👉 **[点击打开完整流体模拟器](/fluid-demo.html)**
+
+这是一个完整的交互式流体仿真实现，你可以：
+- 🖱️ **鼠标拖动**：添加染料和速度扰动
+- 🎨 **观察扩散**：看染料如何在流体中传播
+- ⚡ **实时渲染**：60 FPS 的流畅动画
+- 🎮 **完全可控**：暂停、重置、清除功能
+
+**技术特性：**
+- ✅ 64×64 网格分辨率（4096 个模拟单元）
+- ✅ 完整的扩散 + 平流算法
+- ✅ Jacobi 迭代求解器（4 次迭代）
+- ✅ HSL 彩色渐变显示
+- ✅ 边界反弹处理
+- ✅ 实时 FPS 统计
+
+<div style="text-align: center; margin: 2em 0; padding: 2em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+  <a href="/fluid-demo.html" target="_blank" style="display: inline-block; padding: 15px 40px; background: white; color: #667eea; text-decoration: none; border-radius: 8px; font-size: 20px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s;">
+    🚀 立即体验流体模拟器
+  </a>
+  <p style="color: white; margin-top: 1em; font-size: 14px;">完全在浏览器中运行，无需安装任何插件</p>
 </div>
 
-> 💡 **提示**：可以用鼠标在画布上绘制，观察流体的扩散和平流效果。这正是我们接下来要讲解的算法原理！
+### 🔗 更多优秀在线演示
 
-<details>
-<summary>📺 <strong>更多演示效果</strong>（点击展开）</summary>
-
-其他优秀的流体仿真演示：
-- [WebGL 水波纹效果](https://observablehq.com/@rreusser/periodic-planar-three-body-orbits)
-- [GPU 粒子系统](https://observablehq.com/@rreusser/gpgpu-particles-from-first-principles)
-- [2D 流体场可视化](https://observablehq.com/@mbostock/flow-fields)
-
-</details>
+- 🌊 **[WebGL 流体仿真](https://paveldogreat.github.io/WebGL-Fluid-Simulation/)** - Pavel Dobryakov 的高性能实现
+- 🎭 **[Shadertoy 流体效果](https://www.shadertoy.com/results?query=fluid)** - GPU Shader 实现合集  
+- 💫 **[Observable 墨水效果](https://observablehq.com/@tomlarkworthy/ink)** - Tom Larkworthy 的交互式笔记本
+- 🔬 **[GPU 粒子系统](https://observablehq.com/@rreusser/gpgpu-particles-from-first-principles)** - GPGPU 计算演示
 
 ---
 

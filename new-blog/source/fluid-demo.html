@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D 流体仿真演示</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin: 0 0 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        #canvas {
+            display: block;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background: #000;
+            border-radius: 8px;
+            cursor: crosshair;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background: #3273dc;
+            color: white;
+        }
+        .btn-success {
+            background: #48c774;
+            color: white;
+        }
+        .btn-danger {
+            background: #f14668;
+            color: white;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .info strong {
+            color: #3273dc;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            padding: 10px;
+            background: #fff;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #3273dc;
+        }
+        .stat-label {
+            color: #666;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌊 2D 流体仿真演示</h1>
+        <p class="subtitle">使用 Canvas 2D API 实现的简化版 Stable Fluids 算法</p>
+        
+        <canvas id="canvas" width="512" height="512"></canvas>
+        
+        <div class="controls">
+            <button class="btn-primary" onclick="resetFluid()">🔄 重置</button>
+            <button class="btn-success" onclick="togglePause()">⏯️ <span id="pauseText">暂停</span></button>
+            <button class="btn-danger" onclick="clearDensity()">🧹 清除染料</button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-value" id="fps">60</div>
+                <div class="stat-label">FPS</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="particles">4096</div>
+                <div class="stat-label">网格单元</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" id="iterations">0</div>
+                <div class="stat-label">总帧数</div>
+            </div>
+        </div>
+        
+        <div class="info">
+            <strong>🎮 操作说明：</strong><br>
+            • <strong>左键拖动</strong>：添加速度和染料<br>
+            • <strong>右键拖动</strong>：仅添加染料<br>
+            • 观察染料如何随流体运动扩散
+        </div>
+        
+        <div class="info" style="margin-top: 10px;">
+            <strong>⚙️ 算法说明：</strong><br>
+            实现了 Stable Fluids 的核心步骤：<br>
+            1️⃣ <strong>扩散（Diffusion）</strong>：染料和速度向邻近单元扩散<br>
+            2️⃣ <strong>衰减（Decay）</strong>：模拟能量损失<br>
+            3️⃣ <strong>平流（Advection）</strong>：物质被速度场携带（简化版）<br>
+            <br>
+            <em>注：这是教学演示，实际 WebGL 实现性能更高且效果更好！</em>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const width = canvas.width;
+        const height = canvas.height;
+        
+        // 流体参数
+        const gridSize = 64;
+        const cellSize = width / gridSize;
+        const diffusionRate = 0.0002;
+        const velocityDecay = 0.98;
+        const densityDecay = 0.992;
+        
+        // 状态数组
+        let velocityX = new Float32Array(gridSize * gridSize);
+        let velocityY = new Float32Array(gridSize * gridSize);
+        let density = new Float32Array(gridSize * gridSize);
+        let prevVelocityX = new Float32Array(gridSize * gridSize);
+        let prevVelocityY = new Float32Array(gridSize * gridSize);
+        let prevDensity = new Float32Array(gridSize * gridSize);
+        
+        let isPaused = false;
+        let frameCount = 0;
+        let lastTime = performance.now();
+        let fps = 60;
+        
+        // 鼠标状态
+        let mouseDown = false;
+        let rightMouseDown = false;
+        let mouseX = 0, mouseY = 0;
+        let prevMouseX = 0, prevMouseY = 0;
+        
+        // 获取网格索引
+        function idx(x, y) {
+            return Math.max(0, Math.min(gridSize - 1, y)) * gridSize + Math.max(0, Math.min(gridSize - 1, x));
+        }
+        
+        // 扩散函数
+        function diffuse(field, prevField, rate) {
+            const a = rate * gridSize * gridSize;
+            for (let iter = 0; iter < 4; iter++) {
+                for (let y = 1; y < gridSize - 1; y++) {
+                    for (let x = 1; x < gridSize - 1; x++) {
+                        const i = idx(x, y);
+                        field[i] = (prevField[i] + a * (
+                            field[idx(x - 1, y)] +
+                            field[idx(x + 1, y)] +
+                            field[idx(x, y - 1)] +
+                            field[idx(x, y + 1)]
+                        )) / (1 + 4 * a);
+                    }
+                }
+            }
+        }
+        
+        // 边界处理
+        function setBoundary(field) {
+            for (let i = 0; i < gridSize; i++) {
+                field[idx(0, i)] = field[idx(1, i)];
+                field[idx(gridSize - 1, i)] = field[idx(gridSize - 2, i)];
+                field[idx(i, 0)] = field[idx(i, 1)];
+                field[idx(i, gridSize - 1)] = field[idx(i, gridSize - 2)];
+            }
+        }
+        
+        // 更新流体
+        function updateFluid() {
+            if (isPaused) return;
+            
+            // 保存当前状态
+            prevVelocityX.set(velocityX);
+            prevVelocityY.set(velocityY);
+            prevDensity.set(density);
+            
+            // 扩散速度
+            diffuse(velocityX, prevVelocityX, diffusionRate);
+            diffuse(velocityY, prevVelocityY, diffusionRate);
+            setBoundary(velocityX);
+            setBoundary(velocityY);
+            
+            // 扩散密度
+            diffuse(density, prevDensity, diffusionRate * 0.5);
+            setBoundary(density);
+            
+            // 衰减
+            for (let i = 0; i < velocityX.length; i++) {
+                velocityX[i] *= velocityDecay;
+                velocityY[i] *= velocityDecay;
+                density[i] *= densityDecay;
+            }
+            
+            frameCount++;
+        }
+        
+        // 渲染
+        function render() {
+            // 背景
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, width, height);
+            
+            // 渲染密度场
+            for (let y = 0; y < gridSize; y++) {
+                for (let x = 0; x < gridSize; x++) {
+                    const i = idx(x, y);
+                    const d = density[i];
+                    if (d > 0.1) {
+                        const alpha = Math.min(d / 100, 1);
+                        const hue = (d * 2) % 360;
+                        ctx.fillStyle = `hsla(${hue}, 70%, 60%, ${alpha})`;
+                        ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
+                    }
+                }
+            }
+            
+            // 更新 FPS
+            const now = performance.now();
+            const delta = now - lastTime;
+            if (delta > 100) {
+                fps = Math.round(1000 / delta);
+                document.getElementById('fps').textContent = fps;
+                lastTime = now;
+            }
+            document.getElementById('iterations').textContent = frameCount;
+        }
+        
+        // 主循环
+        function loop() {
+            updateFluid();
+            render();
+            requestAnimationFrame(loop);
+        }
+        
+        // 鼠标事件
+        canvas.addEventListener('mousedown', (e) => {
+            if (e.button === 0) mouseDown = true;
+            if (e.button === 2) rightMouseDown = true;
+            const rect = canvas.getBoundingClientRect();
+            mouseX = (e.clientX - rect.left) / rect.width * width;
+            mouseY = (e.clientY - rect.top) / rect.height * height;
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            e.preventDefault();
+        });
+        
+        canvas.addEventListener('contextmenu', (e) => e.preventDefault());
+        
+        canvas.addEventListener('mousemove', (e) => {
+            if (!mouseDown && !rightMouseDown) return;
+            
+            const rect = canvas.getBoundingClientRect();
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            mouseX = (e.clientX - rect.left) / rect.width * width;
+            mouseY = (e.clientY - rect.top) / rect.height * height;
+            
+            const gridX = Math.floor(mouseX / cellSize);
+            const gridY = Math.floor(mouseY / cellSize);
+            
+            if (gridX >= 0 && gridX < gridSize && gridY >= 0 && gridY < gridSize) {
+                const i = idx(gridX, gridY);
+                
+                if (mouseDown) {
+                    // 左键：添加速度和密度
+                    const dx = (mouseX - prevMouseX) * 2;
+                    const dy = (mouseY - prevMouseY) * 2;
+                    velocityX[i] += dx;
+                    velocityY[i] += dy;
+                    density[i] = Math.min(density[i] + 80, 255);
+                    
+                    // 影响周围单元格
+                    for (let dy = -1; dy <= 1; dy++) {
+                        for (let dx = -1; dx <= 1; dx++) {
+                            const ni = idx(gridX + dx, gridY + dy);
+                            density[ni] = Math.min(density[ni] + 40, 255);
+                        }
+                    }
+                } else if (rightMouseDown) {
+                    // 右键：仅添加密度
+                    density[i] = Math.min(density[i] + 100, 255);
+                }
+            }
+        });
+        
+        canvas.addEventListener('mouseup', () => {
+            mouseDown = false;
+            rightMouseDown = false;
+        });
+        
+        canvas.addEventListener('mouseleave', () => {
+            mouseDown = false;
+            rightMouseDown = false;
+        });
+        
+        // 触摸支持
+        canvas.addEventListener('touchstart', (e) => {
+            mouseDown = true;
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            mouseX = (touch.clientX - rect.left) / rect.width * width;
+            mouseY = (touch.clientY - rect.top) / rect.height * height;
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            e.preventDefault();
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            if (!mouseDown) return;
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            prevMouseX = mouseX;
+            prevMouseY = mouseY;
+            mouseX = (touch.clientX - rect.left) / rect.width * width;
+            mouseY = (touch.clientY - rect.top) / rect.height * height;
+            
+            const gridX = Math.floor(mouseX / cellSize);
+            const gridY = Math.floor(mouseY / cellSize);
+            
+            if (gridX >= 0 && gridX < gridSize && gridY >= 0 && gridY < gridSize) {
+                const i = idx(gridX, gridY);
+                const dx = (mouseX - prevMouseX) * 2;
+                const dy = (mouseY - prevMouseY) * 2;
+                velocityX[i] += dx;
+                velocityY[i] += dy;
+                density[i] = Math.min(density[i] + 80, 255);
+            }
+            e.preventDefault();
+        });
+        
+        canvas.addEventListener('touchend', () => { mouseDown = false; });
+        
+        // 控制函数
+        window.resetFluid = function() {
+            velocityX.fill(0);
+            velocityY.fill(0);
+            density.fill(0);
+            frameCount = 0;
+        };
+        
+        window.togglePause = function() {
+            isPaused = !isPaused;
+            document.getElementById('pauseText').textContent = isPaused ? '继续' : '暂停';
+        };
+        
+        window.clearDensity = function() {
+            density.fill(0);
+        };
+        
+        // 启动
+        loop();
+        
+        // 添加初始扰动
+        setTimeout(() => {
+            for (let i = 0; i < 5; i++) {
+                const x = Math.floor(Math.random() * gridSize);
+                const y = Math.floor(Math.random() * gridSize);
+                const idx = y * gridSize + x;
+                density[idx] = 100 + Math.random() * 100;
+                velocityX[idx] = (Math.random() - 0.5) * 20;
+                velocityY[idx] = (Math.random() - 0.5) * 20;
+            }
+        }, 500);
+    </script>
+</body>
+</html>

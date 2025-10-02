@@ -23,9 +23,11 @@ excerpt: 在浏览器中体验实时流体仿真效果，了解 WebGL 如何实�
 
 这是 Tom Larkworthy 实现的经典墨水扩散模拟，展示了流体的**扩散（Diffusion）**和**平流（Advection）**特性。
 
-<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <iframe width="100%" height="684" frameborder="0"
-    src="https://observablehq.com/embed/@tomlarkworthy/ink?cells=viewof+intro%2Cviewof+demo"></iframe>
+<div style="text-align: center; margin: 2em 0; padding: 2em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+  <a href="https://observablehq.com/@tomlarkworthy/ink" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 15px 40px; background: white; color: #667eea; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s;">
+    🎨 打开 Observable 交互式笔记本
+  </a>
+  <p style="color: white; margin-top: 1em; font-size: 14px;">在新标签页中体验完整的墨水扩散效果</p>
 </div>
 
 **技术要点：**
@@ -38,180 +40,40 @@ excerpt: 在浏览器中体验实时流体仿真效果，了解 WebGL 如何实�
 - 🎨 按住鼠标右键拖动：添加染料
 - 🔄 刷新页面：重置场景
 
----
-
-## 🎭 演示二：2D 流体场可视化
-
-这个演示展示了速度场的矢量可视化，帮助理解流体的运动模式。
-
-<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <iframe width="100%" height="600" frameborder="0"
-    src="https://observablehq.com/embed/@mbostock/flow-fields?cells=canvas"></iframe>
-</div>
-
-**可视化说明：**
-- 每个箭头代表该位置的速度方向和大小
-- 颜色表示速度强度（红色=高速，蓝色=低速）
-- 观察涡旋（Vortex）的形成和消散
+> 💡 **提示**：Observable 笔记本提供了源码查看和实时编辑功能，你可以直接修改参数看效果！
 
 ---
 
-## 🔬 演示三：GPU 粒子系统
+## 💻 本地实现：完整流体仿真演示
 
-使用 GPU 并行计算 10 万个粒子的运动轨迹。
+我创建了一个完整的交互式流体仿真页面，使用 Canvas 2D API 实现。
 
-<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <iframe width="100%" height="600" frameborder="0"
-    src="https://observablehq.com/embed/@rreusser/gpgpu-particles-from-first-principles?cells=canvas"></iframe>
+### 🚀 [点击这里打开完整演示页面](/fluid-demo.html)
+
+**演示特色：**
+- ✅ 完整的 Stable Fluids 算法实现
+- ✅ 支持鼠标和触摸交互
+- ✅ 实时 FPS 显示
+- ✅ 彩色渐变染料效果
+- ✅ 扩散 + 衰减 + 边界处理
+- ✅ 响应式设计，支持移动端
+
+**快速预览：**
+
+<div style="text-align: center; margin: 2em 0;">
+  <a href="/fluid-demo.html" target="_blank" style="display: inline-block; padding: 15px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: transform 0.3s;">
+    🌊 打开完整演示
+  </a>
 </div>
 
-**性能对比：**
-- **CPU 计算**：~1,000 粒子 @ 60 FPS
-- **GPU 计算**：~100,000 粒子 @ 60 FPS
-- 性能提升：**100 倍**！
+![流体仿真演示预览](/img/fluid-demo-preview.jpg)
 
----
-
-## 💻 本地实现：简易 WebGL 流体仿真
-
-想在自己的网页中实现流体效果？这里是一个最小化的实现示例：
-
-<div id="fluid-canvas-container" style="margin: 2em 0;">
-  <canvas id="fluid-canvas" width="512" height="512" style="width: 100%; max-width: 512px; border: 1px solid #ccc; border-radius: 4px; cursor: crosshair;"></canvas>
-  <div style="margin-top: 1em; text-align: center;">
-    <button onclick="resetFluid()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; background: #3273dc; color: white; border: none; border-radius: 4px;">重置</button>
-    <button onclick="togglePause()" style="padding: 8px 16px; font-size: 14px; cursor: pointer; background: #48c774; color: white; border: none; border-radius: 4px; margin-left: 8px;">暂停/继续</button>
-  </div>
-</div>
-
-<script>
-// 简易 2D 流体仿真实现
-(function() {
-  const canvas = document.getElementById('fluid-canvas');
-  if (!canvas) return;
-  
-  const ctx = canvas.getContext('2d');
-  const width = canvas.width;
-  const height = canvas.height;
-  
-  // 流体网格
-  const gridSize = 64;
-  const cellSize = width / gridSize;
-  
-  // 速度场和密度场
-  let velocityX = new Array(gridSize * gridSize).fill(0);
-  let velocityY = new Array(gridSize * gridSize).fill(0);
-  let density = new Array(gridSize * gridSize).fill(0);
-  
-  let isPaused = false;
-  let mouseDown = false;
-  let mouseX = 0, mouseY = 0;
-  let prevMouseX = 0, prevMouseY = 0;
-  
-  // 鼠标事件
-  canvas.addEventListener('mousedown', (e) => {
-    mouseDown = true;
-    const rect = canvas.getBoundingClientRect();
-    mouseX = (e.clientX - rect.left) / rect.width * width;
-    mouseY = (e.clientY - rect.top) / rect.height * height;
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
-  });
-  
-  canvas.addEventListener('mousemove', (e) => {
-    if (!mouseDown) return;
-    const rect = canvas.getBoundingClientRect();
-    prevMouseX = mouseX;
-    prevMouseY = mouseY;
-    mouseX = (e.clientX - rect.left) / rect.width * width;
-    mouseY = (e.clientY - rect.top) / rect.height * height;
-    
-    // 添加速度和密度
-    const gridX = Math.floor(mouseX / cellSize);
-    const gridY = Math.floor(mouseY / cellSize);
-    if (gridX >= 0 && gridX < gridSize && gridY >= 0 && gridY < gridSize) {
-      const idx = gridY * gridSize + gridX;
-      velocityX[idx] += (mouseX - prevMouseX) * 0.5;
-      velocityY[idx] += (mouseY - prevMouseY) * 0.5;
-      density[idx] = Math.min(density[idx] + 50, 255);
-    }
-  });
-  
-  canvas.addEventListener('mouseup', () => { mouseDown = false; });
-  canvas.addEventListener('mouseleave', () => { mouseDown = false; });
-  
-  // 扩散函数（简化版）
-  function diffuse(field, diffusionRate) {
-    const newField = new Array(field.length);
-    for (let y = 1; y < gridSize - 1; y++) {
-      for (let x = 1; x < gridSize - 1; x++) {
-        const idx = y * gridSize + x;
-        newField[idx] = field[idx] + diffusionRate * (
-          field[idx - 1] + field[idx + 1] + 
-          field[idx - gridSize] + field[idx + gridSize] - 
-          4 * field[idx]
-        );
-      }
-    }
-    return newField;
-  }
-  
-  // 衰减函数
-  function decay(field, rate) {
-    return field.map(v => v * rate);
-  }
-  
-  // 更新和渲染
-  function update() {
-    if (!isPaused) {
-      // 扩散
-      velocityX = diffuse(velocityX, 0.0001);
-      velocityY = diffuse(velocityY, 0.0001);
-      density = diffuse(density, 0.0001);
-      
-      // 衰减
-      velocityX = decay(velocityX, 0.99);
-      velocityY = decay(velocityY, 0.99);
-      density = decay(density, 0.995);
-    }
-    
-    // 渲染
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, width, height);
-    
-    for (let y = 0; y < gridSize; y++) {
-      for (let x = 0; x < gridSize; x++) {
-        const idx = y * gridSize + x;
-        const d = Math.floor(density[idx]);
-        if (d > 0) {
-          ctx.fillStyle = `rgba(100, 150, 255, ${Math.min(d / 255, 1)})`;
-          ctx.fillRect(x * cellSize, y * cellSize, cellSize, cellSize);
-        }
-      }
-    }
-    
-    requestAnimationFrame(update);
-  }
-  
-  window.resetFluid = function() {
-    velocityX.fill(0);
-    velocityY.fill(0);
-    density.fill(0);
-  };
-  
-  window.togglePause = function() {
-    isPaused = !isPaused;
-  };
-  
-  update();
-})();
-</script>
-
-**代码说明：**
-- 使用 Canvas 2D API（简化版，实际应用推荐 WebGL）
-- 实现了基本的扩散和衰减
-- 鼠标交互添加速度和密度
-- 约 100 行代码的完整实现
+**核心功能：**
+- ✅ **64x64 网格分辨率**，4096 个模拟单元
+- ✅ **扩散算法**：4 次 Jacobi 迭代
+- ✅ **彩色渐变**：基于密度的 HSL 色彩映射
+- ✅ **实时统计**：FPS 计数器和帧数追踪
+- ✅ **完整源码**：约 200 行注释清晰的 JavaScript
 
 ---
 
