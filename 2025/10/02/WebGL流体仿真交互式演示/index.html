@@ -28,7 +28,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sealeee.github.io/img/fluid-demo-preview.jpg">
 <meta property="article:published_time" content="2025-10-02T07:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-02T02:33:10.860Z">
+<meta property="article:modified_time" content="2025-10-02T02:44:03.719Z">
 <meta property="article:author" content="SeaLeeAI">
 <meta property="article:tag" content="JavaScript">
 <meta property="article:tag" content="Shader">
@@ -245,7 +245,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          771 字
+          695 字
         
       </span>
     
@@ -256,7 +256,7 @@
         
         
         
-          7 分钟
+          6 分钟
         
       </span>
     
@@ -304,9 +304,11 @@
 <hr>
 <h2 id="🌊-演示一：墨水扩散效果">🌊 演示一：墨水扩散效果</h2>
 <p>这是 Tom Larkworthy 实现的经典墨水扩散模拟，展示了流体的**扩散（Diffusion）<strong>和</strong>平流（Advection）**特性。</p>
-<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <iframe width="100%" height="684" frameborder="0"
-    src="https://observablehq.com/embed/@tomlarkworthy/ink?cells=viewof+intro%2Cviewof+demo"></iframe>
+<div style="text-align: center; margin: 2em 0; padding: 2em; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.2);">
+  <a href="https://observablehq.com/@tomlarkworthy/ink" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 15px 40px; background: white; color: #667eea; text-decoration: none; border-radius: 8px; font-size: 18px; font-weight: bold; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s;">
+    🎨 打开 Observable 交互式笔记本
+  </a>
+  <p style="color: white; margin-top: 1em; font-size: 14px;">在新标签页中体验完整的墨水扩散效果</p>
 </div>
 <p><strong>技术要点：</strong></p>
 <ul>
@@ -320,32 +322,9 @@
 <li>🎨 按住鼠标右键拖动：添加染料</li>
 <li>🔄 刷新页面：重置场景</li>
 </ul>
-<hr>
-<h2 id="🎭-演示二：2D-流体场可视化">🎭 演示二：2D 流体场可视化</h2>
-<p>这个演示展示了速度场的矢量可视化，帮助理解流体的运动模式。</p>
-<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <iframe width="100%" height="600" frameborder="0"
-    src="https://observablehq.com/embed/@mbostock/flow-fields?cells=canvas"></iframe>
-</div>
-<p><strong>可视化说明：</strong></p>
-<ul>
-<li>每个箭头代表该位置的速度方向和大小</li>
-<li>颜色表示速度强度（红色=高速，蓝色=低速）</li>
-<li>观察涡旋（Vortex）的形成和消散</li>
-</ul>
-<hr>
-<h2 id="🔬-演示三：GPU-粒子系统">🔬 演示三：GPU 粒子系统</h2>
-<p>使用 GPU 并行计算 10 万个粒子的运动轨迹。</p>
-<div style="margin: 2em 0; border: 2px solid #e0e0e0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-  <iframe width="100%" height="600" frameborder="0"
-    src="https://observablehq.com/embed/@rreusser/gpgpu-particles-from-first-principles?cells=canvas"></iframe>
-</div>
-<p><strong>性能对比：</strong></p>
-<ul>
-<li><strong>CPU 计算</strong>：~1,000 粒子 @ 60 FPS</li>
-<li><strong>GPU 计算</strong>：~100,000 粒子 @ 60 FPS</li>
-<li>性能提升：<strong>100 倍</strong>！</li>
-</ul>
+<blockquote>
+<p>💡 <strong>提示</strong>：Observable 笔记本提供了源码查看和实时编辑功能，你可以直接修改参数看效果！</p>
+</blockquote>
 <hr>
 <h2 id="💻-本地实现：完整流体仿真演示">💻 本地实现：完整流体仿真演示</h2>
 <p>我创建了一个完整的交互式流体仿真页面，使用 Canvas 2D API 实现。</p>
