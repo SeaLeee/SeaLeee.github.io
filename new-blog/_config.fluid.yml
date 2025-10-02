@@ -371,8 +371,8 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    #- { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
@@ -1028,23 +1028,106 @@ links:
   # 友链的成员项
   # Member item of page
   items:
+    # ========== 图形学与可视化 ==========
     - {
-      title: "Fluid Blog",
-      intro: "主题博客",
-      link: "https://hexo.fluid-dev.com/",
-      avatar: "/img/favicon.png"
+      title: "Tom Larkworthy's Observable",
+      intro: "优质的图形学和 WebGL 交互式笔记，包含流体仿真、粒子系统等实现",
+      link: "https://observablehq.com/@tomlarkworthy",
+      avatar: "https://static.observableusercontent.com/thumbnail/e3e7e769a48b2e3c0d3c1cf1dea6ba6f5c309d14e71f32f066ba6fe2b0df3ea7.jpg"
     }
     - {
-      title: "Fluid Docs",
-      intro: "主题使用指南",
-      link: "https://hexo.fluid-dev.com/docs/",
-      avatar: "/img/favicon.png"
+      title: "Shadertoy",
+      intro: "全球最大的 Shader 创意分享平台，学习 GLSL 的最佳实践场所",
+      link: "https://www.shadertoy.com/",
+      avatar: "https://www.shadertoy.com/img/profile.jpg"
     }
     - {
-      title: "Fluid Repo",
-      intro: "主题 GitHub 仓库",
-      link: "https://github.com/fluid-dev/hexo-theme-fluid",
-      avatar: "/img/favicon.png"
+      title: "The Book of Shaders",
+      intro: "Shader 编程的经典入门教程，循序渐进讲解片段着色器",
+      link: "https://thebookofshaders.com/",
+      avatar: "https://thebookofshaders.com/favicon.gif"
+    }
+    - {
+      title: "Inigo Quilez",
+      intro: "图形学大神 IQ 的个人网站，SDF、Raymarching 技术权威",
+      link: "https://iquilezles.org/",
+      avatar: "https://iquilezles.org/www/material/iquilezles.jpg"
+    }
+    
+    # ========== WebGL / Three.js ==========
+    - {
+      title: "Three.js 官方文档",
+      intro: "最流行的 WebGL 3D 库，丰富的示例和完善的文档",
+      link: "https://threejs.org/",
+      avatar: "https://threejs.org/files/share.png"
+    }
+    - {
+      title: "WebGL Fundamentals",
+      intro: "WebGL 基础教程，从零开始理解 WebGL 工作原理",
+      link: "https://webglfundamentals.org/",
+      avatar: "https://webglfundamentals.org/webgl/lessons/resources/webglfundamentals-icon-256.png"
+    }
+    
+    # ========== 计算机图形学教程 ==========
+    - {
+      title: "Learn OpenGL CN",
+      intro: "OpenGL 中文教程，系统学习现代图形学渲染管线",
+      link: "https://learnopengl-cn.github.io/",
+      avatar: "https://learnopengl-cn.github.io/img/avatar.png"
+    }
+    - {
+      title: "GAMES101/102",
+      intro: "闫令琪教授的图形学公开课，B站最受欢迎的CG入门课程",
+      link: "https://sites.cs.ucsb.edu/~lingqi/teaching/games101.html",
+      avatar: "https://sites.cs.ucsb.edu/~lingqi/images/photo.jpg"
+    }
+    - {
+      title: "Scratchapixel",
+      intro: "从零开始的图形学教程，详细讲解光线追踪、着色等原理",
+      link: "https://www.scratchapixel.com/",
+      avatar: "https://www.scratchapixel.com/images/logo.png"
+    }
+    
+    # ========== 流体仿真与物理模拟 ==========
+    - {
+      title: "GPU Gems",
+      intro: "NVIDIA 官方图形学宝典，包含流体仿真等高级技术",
+      link: "https://developer.nvidia.com/gpugems/gpugems/contributors",
+      avatar: "https://developer.nvidia.com/sites/default/files/akamai/nvidia-logo.svg"
+    }
+    - {
+      title: "Ten Minute Physics",
+      intro: "10分钟学会物理模拟，流体、布料、刚体等简洁实现",
+      link: "https://matthias-research.github.io/pages/tenMinutePhysics/index.html",
+      avatar: "https://matthias-research.github.io/pages/tenMinutePhysics/thumb.jpg"
+    }
+    
+    # ========== AI 与机器学习 ==========
+    - {
+      title: "Papers with Code",
+      intro: "机器学习论文与代码实现，跟踪最新研究进展",
+      link: "https://paperswithcode.com/",
+      avatar: "https://paperswithcode.com/static/icon-192.png"
+    }
+    - {
+      title: "Hugging Face",
+      intro: "AI 社区和模型库，Transformers、Diffusion Models 等",
+      link: "https://huggingface.co/",
+      avatar: "https://huggingface.co/front/assets/huggingface_logo.svg"
+    }
+    
+    # ========== 开发工具与资源 ==========
+    - {
+      title: "GitHub",
+      intro: "全球最大的代码托管平台",
+      link: "https://github.com/",
+      avatar: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+    }
+    - {
+      title: "Observable",
+      intro: "交互式数据可视化和编程笔记本平台",
+      link: "https://observablehq.com/",
+      avatar: "https://static.observablehq.com/favicon-512.0667824687f99c942a02e06e2db1a060911da0bf3606671676a255b1cf97b4fe.png"
     }
 
   # 当成员头像加载失败时，替换为指定图片
