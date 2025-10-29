@@ -1,0 +1,89 @@
+name: 自动更新市场数据
+
+on:
+  schedule:
+    # 每个工作日上午9:30 (UTC时间1:30)更新数据
+    - cron: '30 1 * * 1-5'
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-market-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        ref: source
+        fetch-depth: 0
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install Python Dependencies
+      run: |
+        pip install requests pandas beautifulsoup4 akshare tushare yfinance
+
+    - name: Install Node Dependencies
+      run: |
+        cd new-blog
+        npm install
+
+    - name: Fetch Market Data
+      id: fetch_data
+      run: |
+        cd new-blog/tools
+        python fetch_market_data_github.py
+      env:
+        TUSHARE_TOKEN: ${{ secrets.TUSHARE_TOKEN }}
+        AKSHARE_TOKEN: ${{ secrets.AKSHARE_TOKEN }}
+
+    - name: Update Blog Post
+      if: steps.fetch_data.outputs.data_updated == 'true'
+      run: |
+        cd new-blog/tools
+        python update_blog_github.py
+
+    - name: Generate Blog
+      if: steps.fetch_data.outputs.data_updated == 'true'
+      run: |
+        cd new-blog
+        npx hexo clean
+        npx hexo generate
+
+    - name: Commit Changes
+      if: steps.fetch_data.outputs.data_updated == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "自动更新市场数据 - $(date '+%Y-%m-%d')" || exit 0
+        git push origin source
+
+    - name: Deploy to GitHub Pages
+      if: steps.fetch_data.outputs.data_updated == 'true'
+      run: |
+        cd new-blog
+        npx hexo deploy
+
+    - name: Upload Artifacts
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-logs
+        path: |
+          new-blog/tools/*.log
+          new-blog/*.log
