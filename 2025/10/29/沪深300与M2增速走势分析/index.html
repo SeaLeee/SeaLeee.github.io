@@ -19,17 +19,18 @@
   <meta name="author" content="SeaLeeAI">
   <meta name="keywords" content="">
   
-    <meta name="description" content="通过沪深300指数与M2同比增速的走势对比分析，为投资者提供基于宏观经济数据的每日投资建议和市场趋势判断。">
+    <meta name="description" content="通过沪深300指数与M1-M2同比增速差值的走势对比分析，为投资者提供基于货币流动性结构的每日投资建议和市场趋势判断。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="沪深300与M2同比增速走势分析：每日投资策略指南">
+<meta property="og:title" content="沪深300与M1-M2增速差值走势分析：每日投资策略指南">
 <meta property="og:url" content="https://sealeee.github.io/2025/10/29/%E6%B2%AA%E6%B7%B1300%E4%B8%8EM2%E5%A2%9E%E9%80%9F%E8%B5%B0%E5%8A%BF%E5%88%86%E6%9E%90/index.html">
 <meta property="og:site_name" content="SeaLeeAI&#39;s Blog">
-<meta property="og:description" content="通过沪深300指数与M2同比增速的走势对比分析，为投资者提供基于宏观经济数据的每日投资建议和市场趋势判断。">
+<meta property="og:description" content="通过沪深300指数与M1-M2同比增速差值的走势对比分析，为投资者提供基于货币流动性结构的每日投资建议和市场趋势判断。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sealeee.github.io/img/stock-analysis.jpg">
 <meta property="article:published_time" content="2025-10-29T01:00:00.000Z">
 <meta property="article:modified_time" content="2025-10-29T01:00:00.000Z">
 <meta property="article:author" content="SeaLeeAI">
+<meta property="article:tag" content="M1增速">
 <meta property="article:tag" content="M2增速">
 <meta property="article:tag" content="投资分析">
 <meta property="article:tag" content="沪深300">
@@ -40,7 +41,7 @@
   
   
   
-  <title>沪深300与M2同比增速走势分析：每日投资策略指南 - SeaLeeAI&#39;s Blog</title>
+  <title>沪深300与M1-M2增速差值走势分析：每日投资策略指南 - SeaLeeAI&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -236,7 +237,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="沪深300与M2同比增速走势分析：每日投资策略指南"></span>
+            <span id="subtitle" data-typed-text="沪深300与M1-M2增速差值走势分析：每日投资策略指南"></span>
           
         </div>
 
@@ -259,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2k 字
         
       </span>
     
@@ -270,7 +271,7 @@
         
         
         
-          14 分钟
+          17 分钟
         
       </span>
     
@@ -307,29 +308,50 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">沪深300与M2同比增速走势分析：每日投资策略指南</h1>
+            <h1 id="seo-header">沪深300与M1-M2增速差值走势分析：每日投资策略指南</h1>
             
             
               <div class="markdown-body">
                 
                 <h2 id="📊-概述">📊 概述</h2>
-<p>本文通过对比分析<strong>沪深300指数</strong>与<strong>M2同比增速</strong>的历史走势，探索货币政策对股市的影响机制，并基于数据模型提供每日投资建议。</p>
+<p>本文通过对比分析<strong>沪深300指数</strong>与<strong>M1-M2同比增速差值</strong>的历史走势，探索货币流动性结构对股市的影响机制，并基于数据模型提供每日投资建议。</p>
 <h3 id="🎯-核心指标说明">🎯 核心指标说明</h3>
 <ul>
 <li><strong>沪深300指数</strong>: 反映A股市场整体表现的重要指标</li>
-<li><strong>M2同比增速</strong>: 广义货币供应量增长率，反映流动性松紧程度</li>
-<li><strong>相关性分析</strong>: 两者的历史关联度和领先滞后关系</li>
+<li><strong>M1同比增速</strong>: 狭义货币供应量增长率，反映活跃资金流动性</li>
+<li><strong>M2同比增速</strong>: 广义货币供应量增长率，反映整体流动性</li>
+<li><strong>M1-M2增速差</strong>: 反映资金活跃度，正值表示资金更活跃，负值表示资金沉淀</li>
+<li><strong>相关性分析</strong>: 沪深300与M1-M2差值的历史关联度</li>
 </ul>
 <hr>
 <h2 id="📈-实时数据展示">📈 实时数据展示</h2>
-<div id="chart-container" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-  <h3 style="text-align: center; color: #2c3e50;">沪深300指数 vs M2同比增速走势图</h3>
-  <!-- 图表容器 -->
-  <div id="main-chart" style="width: 100%; height: 500px; border: 1px solid #ddd; background: white; display: flex; align-items: center; justify-content: center;">
+<link rel="stylesheet" href="/css/market-data.css">
+<div class="market-chart">
+  <div class="chart-title">沪深300指数 vs M1-M2增速差值走势分析</div>
+  <div class="chart-container">
     <div style="text-align: center; color: #666;">
-      <p>📊 图表加载中...</p>
-      <p><small>数据更新时间: <span id="update-time">2025-10-29 09:00</span></small></p>
-    </div>
+      <p style="font-size: 18px; margin: 10px 0;">📊 数据图表</p>
+      <p style="margin: 5px 0;">实时监控沪深300指数与货币流动性结构关系</p>
+      <p class="update-time">数据更新时间: <span id="update-time">2025-10-29 09:00</span></p>
+<pre><code class="hljs">  &lt;!-- 简化版数据展示 --&gt;
+  &lt;div style=&quot;margin-top: 20px; padding: 15px; background: #f1f2f6; border-radius: 6px;&quot;&gt;
+    &lt;div style=&quot;display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; text-align: center;&quot;&gt;
+      &lt;div&gt;
+        &lt;div style=&quot;font-size: 24px; font-weight: bold; color: #e74c3c;&quot;&gt;3850.23&lt;/div&gt;
+        &lt;div style=&quot;font-size: 12px; color: #666;&quot;&gt;沪深300指数&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div style=&quot;font-size: 24px; font-weight: bold; color: #27ae60;&quot;&gt;+1.25%&lt;/div&gt;
+        &lt;div style=&quot;font-size: 12px; color: #666;&quot;&gt;今日涨跌幅&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div style=&quot;font-size: 24px; font-weight: bold; color: #f39c12;&quot;&gt;-2.6%&lt;/div&gt;
+        &lt;div style=&quot;font-size: 12px; color: #666;&quot;&gt;M1-M2差值&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
   </div>
   <!-- 数据表格 -->
   <div style="margin-top: 20px;">
@@ -339,7 +361,9 @@
           <th style="padding: 10px; text-align: left;">日期</th>
           <th style="padding: 10px; text-align: right;">沪深300</th>
           <th style="padding: 10px; text-align: right;">涨跌幅</th>
+          <th style="padding: 10px; text-align: right;">M1增速(%)</th>
           <th style="padding: 10px; text-align: right;">M2增速(%)</th>
+          <th style="padding: 10px; text-align: right;">M1-M2差值</th>
           <th style="padding: 10px; text-align: center;">投资建议</th>
         </tr>
       </thead>
@@ -348,9 +372,11 @@
           <td style="padding: 8px;">2025-10-29</td>
           <td style="padding: 8px; text-align: right;">3850.23</td>
           <td style="padding: 8px; text-align: right; color: red;">+1.25%</td>
-          <td style="padding: 8px; text-align: right;">7.8</td>
+          <td style="padding: 8px; text-align: right;">5.2%</td>
+          <td style="padding: 8px; text-align: right;">7.8%</td>
+          <td style="padding: 8px; text-align: right; color: red;">-2.6%</td>
           <td style="padding: 8px; text-align: center;">
-            <span style="background: #27ae60; color: white; padding: 2px 8px; border-radius: 4px;">谨慎乐观</span>
+            <span style="background: #f39c12; color: white; padding: 2px 8px; border-radius: 4px;">谨慎乐观</span>
           </td>
         </tr>
         <tr style="background: #f8f9fa;">
@@ -377,49 +403,53 @@
 <h4 id="关键观察点">关键观察点</h4>
 <ol>
 <li>
-<p><strong>流动性环境</strong> 📊</p>
+<p><strong>流动性环境</strong> �</p>
 <ul>
-<li>M2增速7.8%，处于相对宽松区间</li>
+<li>M1增速5.2%，M2增速7.8%，M1-M2差值-2.6%</li>
+<li>资金流动性结构：M1增速低于M2，资金相对沉淀</li>
 <li>央行政策倾向：中性偏松</li>
-<li>市场流动性：充裕</li>
+<li>市场流动性：总量充裕但活跃度不高</li>
 </ul>
 </li>
 <li>
-<p><strong>技术指标</strong> 📉</p>
+<p><strong>技术指标</strong> �</p>
 <ul>
 <li>30日均线：3820点（支撑位）</li>
 <li>阻力位：3880点</li>
 <li>RSI指标：62（中性偏强）</li>
+<li>M1-M2差值趋势：关注差值收敛情况</li>
 </ul>
 </li>
 <li>
-<p><strong>相关性分析</strong> 🔗</p>
+<p><strong>相关性分析</strong> �</p>
 <ul>
-<li>历史相关系数：0.65（中等正相关）</li>
+<li>沪深300与M1-M2差值相关系数：0.45（中等正相关）</li>
 <li>当前背离程度：轻微</li>
 <li>预期收敛时间：1-2周</li>
+<li>流动性结构改善是关键因素</li>
 </ul>
 </li>
 </ol>
 <hr>
 <h2 id="🎯-每日投资建议">🎯 每日投资建议</h2>
 <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin: 20px 0;">
-  <h3 style="color: white; margin: 0 0 15px 0;">📝 2025-10-29 投资建议</h3>
+  <h3 style="color: white; margin: 0 0 15px 0;">� 2025-10-29 投资建议</h3>
   <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
     <div>
-      <h4 style="color: #f1c40f;">🎯 操作策略</h4>
+      <h4 style="color: #f1c40f;">📊 操作策略</h4>
       <ul style="margin: 10px 0; padding-left: 20px;">
-        <li>短期：<strong>谨慎乐观</strong></li>
-        <li>中期：<strong>逢低布局</strong></li>
-        <li>长期：<strong>配置优化</strong></li>
+        <li>短期：<strong>谨慎乐观</strong>（M1-M2差值为负，资金活跃度有限）</li>
+        <li>中期：<strong>关注流动性结构变化</strong>（等待M1-M2差值收敛或转正）</li>
+        <li>长期：<strong>优选流动性敏感板块</strong>（金融、地产等）</li>
       </ul>
     </div>
 <pre><code class="hljs">&lt;div&gt;
   &lt;h4 style=&quot;color: #f1c40f;&quot;&gt;⚠️ 风险提示&lt;/h4&gt;
   &lt;ul style=&quot;margin: 10px 0; padding-left: 20px;&quot;&gt;
-    &lt;li&gt;关注政策变化&lt;/li&gt;
-    &lt;li&gt;控制仓位比例&lt;/li&gt;
-    &lt;li&gt;设置止损点位&lt;/li&gt;
+    &lt;li&gt;关注M1-M2差值变化趋势&lt;/li&gt;
+    &lt;li&gt;控制仓位比例（建议60-70%）&lt;/li&gt;
+    &lt;li&gt;设置止损点位（3800点附近）&lt;/li&gt;
+    &lt;li&gt;监控货币政策调整信号&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/div&gt;
 </code></pre>
@@ -635,6 +665,8 @@
       
         <a href="/tags/%E9%87%8F%E5%8C%96%E5%88%86%E6%9E%90/" class="print-no-link">#量化分析</a>
       
+        <a href="/tags/M1%E5%A2%9E%E9%80%9F/" class="print-no-link">#M1增速</a>
+      
     </div>
   
 </div>
@@ -645,7 +677,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>沪深300与M2同比增速走势分析：每日投资策略指南</div>
+      <div>沪深300与M1-M2增速差值走势分析：每日投资策略指南</div>
       <div>https://sealeee.github.io/2025/10/29/沪深300与M2增速走势分析/</div>
     </div>
     <div class="license-meta">
