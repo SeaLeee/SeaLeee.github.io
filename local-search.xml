@@ -26,11 +26,11 @@
       
       <tag>货币政策</tag>
       
+      <tag>M1增速</tag>
+      
       <tag>M2增速</tag>
       
       <tag>量化分析</tag>
-      
-      <tag>M1增速</tag>
       
     </tags>
     
@@ -59,11 +59,11 @@
       
       <tag>流体仿真</tag>
       
-      <tag>Shader</tag>
-      
       <tag>交互式演示</tag>
       
       <tag>JavaScript</tag>
+      
+      <tag>Shader</tag>
       
     </tags>
     
@@ -125,9 +125,9 @@
       
       <tag>流体仿真</tag>
       
-      <tag>计算机图形学</tag>
-      
       <tag>Shader</tag>
+      
+      <tag>计算机图形学</tag>
       
       <tag>Observable</tag>
       
