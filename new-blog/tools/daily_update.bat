@@ -7,7 +7,7 @@ REM 切换到博客目录
 cd /d "g:\SeaLee_AI知识库\SeaLeee.github.io\new-blog"
 
 echo 1. 更新市场数据...
-python scripts\update_market_data.py
+python tools\update_market_data.py
 
 echo.
 echo 2. 清理缓存...
