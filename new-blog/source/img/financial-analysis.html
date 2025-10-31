@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { margin: 0; padding: 20px; font-family: Arial, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .container { width: 800px; height: 400px; background: white; border-radius: 10px; padding: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .title { text-align: center; color: #2c3e50; font-size: 28px; font-weight: bold; margin-bottom: 20px; }
+        .subtitle { text-align: center; color: #7f8c8d; font-size: 16px; margin-bottom: 30px; }
+        .chart { display: flex; justify-content: space-between; align-items: end; height: 200px; margin: 30px 0; }
+        .bar { width: 60px; background: linear-gradient(180deg, #3498db 0%, #2980b9 100%); border-radius: 5px 5px 0 0; display: flex; align-items: end; justify-content: center; color: white; font-weight: bold; position: relative; }
+        .bar::after { content: attr(data-label); position: absolute; bottom: -25px; color: #2c3e50; font-size: 12px; }
+        .stats { display: flex; justify-content: space-around; margin-top: 20px; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #e74c3c; }
+        .stat-label { font-size: 12px; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">沪深300 vs M1-M2增速分析</div>
+        <div class="subtitle">📊 投资策略 · 数据驱动 · 风险管控</div>
+        <div class="chart">
+            <div class="bar" style="height: 80%;" data-label="10月">3850</div>
+            <div class="bar" style="height: 75%;" data-label="11月">3820</div>
+            <div class="bar" style="height: 85%;" data-label="12月">3890</div>
+            <div class="bar" style="height: 90%;" data-label="1月">3920</div>
+            <div class="bar" style="height: 70%;" data-label="2月">3780</div>
+            <div class="bar" style="height: 88%;" data-label="3月">3910</div>
+        </div>
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-value">+1.25%</div>
+                <div class="stat-label">今日涨跌幅</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">-2.6%</div>
+                <div class="stat-label">M1-M2差值</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">3/5</div>
+                <div class="stat-label">投资信号</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">60%</div>
+                <div class="stat-label">建议仓位</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
