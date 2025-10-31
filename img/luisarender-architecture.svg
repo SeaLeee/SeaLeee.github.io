@@ -1,0 +1,133 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dslGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="runtimeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="backendGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- 背景 -->
+  <rect width="800" height="600" fill="#f8f9fa"/>
+  
+  <!-- 标题 -->
+  <text x="400" y="30" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    LuisaRender 架构设计
+  </text>
+  
+  <!-- DSL层 -->
+  <rect x="50" y="70" width="700" height="120" rx="10" fill="url(#dslGradient)" filter="url(#shadow)"/>
+  <text x="400" y="95" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+    嵌入式DSL层 (Embedded DSL)
+  </text>
+  
+  <!-- DSL组件 -->
+  <rect x="80" y="110" width="140" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="150" y="130" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">C++ DSL</text>
+  <text x="150" y="145" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Kernel Programming</text>
+  <text x="150" y="160" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">AST Generation</text>
+  
+  <rect x="240" y="110" width="140" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="310" y="130" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">JIT编译</text>
+  <text x="310" y="145" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Code Generation</text>
+  <text x="310" y="160" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Optimization</text>
+  
+  <rect x="400" y="110" width="140" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="470" y="130" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">多态系统</text>
+  <text x="470" y="145" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Dynamic Dispatch</text>
+  <text x="470" y="160" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">De-virtualization</text>
+  
+  <rect x="560" y="110" width="140" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="630" y="130" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">资源捕获</text>
+  <text x="630" y="145" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Resource Capture</text>
+  <text x="630" y="160" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Auto Binding</text>
+  
+  <!-- 统一运行时层 -->
+  <rect x="50" y="230" width="700" height="120" rx="10" fill="url(#runtimeGradient)" filter="url(#shadow)"/>
+  <text x="400" y="255" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+    统一运行时层 (Unified Runtime)
+  </text>
+  
+  <!-- Runtime组件 -->
+  <rect x="80" y="270" width="130" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="145" y="290" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">资源管理</text>
+  <text x="145" y="305" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Buffers, Images</text>
+  <text x="145" y="320" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">RAII Wrappers</text>
+  
+  <rect x="230" y="270" width="130" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="295" y="290" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">命令调度</text>
+  <text x="295" y="305" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Command Buffers</text>
+  <text x="295" y="320" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Async Execution</text>
+  
+  <rect x="380" y="270" width="130" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="445" y="290" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">依赖分析</text>
+  <text x="445" y="305" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Resource Tracking</text>
+  <text x="445" y="320" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Auto Scheduling</text>
+  
+  <rect x="530" y="270" width="130" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="595" y="290" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">同步机制</text>
+  <text x="595" y="305" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Streams, Events</text>
+  <text x="595" y="320" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Synchronization</text>
+  
+  <!-- 后端层 -->
+  <rect x="50" y="390" width="700" height="120" rx="10" fill="url(#backendGradient)" filter="url(#shadow)"/>
+  <text x="400" y="415" font-family="Arial, sans-serif" font-size="18" font-weight="bold" text-anchor="middle" fill="white">
+    多后端实现层 (Multiple Backends)
+  </text>
+  
+  <!-- Backend组件 -->
+  <rect x="80" y="430" width="120" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="140" y="450" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">CUDA</text>
+  <text x="140" y="465" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">NVIDIA GPU</text>
+  <text x="140" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">OptiX RT</text>
+  
+  <rect x="220" y="430" width="120" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="280" y="450" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">Metal</text>
+  <text x="280" y="465" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Apple Silicon</text>
+  <text x="280" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">M1/M2 GPU</text>
+  
+  <rect x="360" y="430" width="120" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="420" y="450" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">DirectX</text>
+  <text x="420" y="465" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">Windows GPU</text>
+  <text x="420" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">DXR</text>
+  
+  <rect x="500" y="430" width="120" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="560" y="450" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">ISPC</text>
+  <text x="560" y="465" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">CPU Vector</text>
+  <text x="560" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">SIMD</text>
+  
+  <rect x="640" y="430" width="120" height="60" rx="5" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)"/>
+  <text x="700" y="450" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="white">LLVM</text>
+  <text x="700" y="465" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">CPU Scalar</text>
+  <text x="700" y="480" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="white">IR Gen</text>
+  
+  <!-- 连接线 -->
+  <path d="M 400 190 L 400 230" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  <path d="M 400 350 L 400 390" stroke="#34495e" stroke-width="2" marker-end="url(#arrowhead)"/>
+  
+  <!-- 箭头标记 -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#34495e"/>
+    </marker>
+  </defs>
+  
+  <!-- 性能数据 -->
+  <rect x="50" y="530" width="700" height="60" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="400" y="550" font-family="Arial, sans-serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#2c3e50">
+    性能提升：相比PBRT-v4快5-11倍 | 相比Mitsuba3快4-16倍
+  </text>
+  <text x="400" y="570" font-family="Arial, sans-serif" font-size="12" text-anchor="middle" fill="#7f8c8d">
+    测试环境：RTX-3080Ti GPU, 16 bounces, 16384 spp
+  </text>
+</svg>
