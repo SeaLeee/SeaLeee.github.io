@@ -127,11 +127,11 @@
       
       <tag>流体仿真</tag>
       
+      <tag>Shader</tag>
+      
       <tag>交互式演示</tag>
       
       <tag>JavaScript</tag>
-      
-      <tag>Shader</tag>
       
     </tags>
     
@@ -156,9 +156,9 @@
     
     <tags>
       
-      <tag>流体仿真</tag>
-      
       <tag>计算机图形学</tag>
+      
+      <tag>流体仿真</tag>
       
       <tag>GPU 编程</tag>
       
@@ -189,13 +189,13 @@
     
     <tags>
       
+      <tag>计算机图形学</tag>
+      
       <tag>WebGL</tag>
       
       <tag>流体仿真</tag>
       
       <tag>Shader</tag>
-      
-      <tag>计算机图形学</tag>
       
       <tag>Observable</tag>
       
